@@ -1,0 +1,136 @@
+@import "tailwindcss";
+
+/* ── Suwerte design system ────────────────────────────────────────────
+   "Lucky lantern" — warm gold light against a deep indigo night.
+   Gold = the prize / luck.  Mint = principal is always safe.            */
+@theme {
+  --color-ink: #090a1a;
+  --color-ink-2: #0f1126;
+  --color-panel: #16183a;
+  --color-panel-2: #1d2049;
+  --color-line: #2b2f5e;
+  --color-gold: #f6c14b;
+  --color-gold-soft: #ffdf95;
+  --color-mint: #57e0ad;
+  --color-mint-deep: #2bbd8a;
+  --color-coral: #ff7a7a;
+  --color-ink-text: #ecedf7;
+  --color-muted: #9698c4;
+
+  --font-display: var(--font-fraunces), Georgia, serif;
+  --font-body: var(--font-dm-sans), system-ui, sans-serif;
+
+  --radius-xl: 1.25rem;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background:
+    radial-gradient(900px 500px at 80% -8%, rgba(246, 193, 75, 0.13), transparent 60%),
+    radial-gradient(820px 520px at 8% 4%, rgba(87, 224, 173, 0.09), transparent 55%),
+    var(--color-ink);
+  color: var(--color-ink-text);
+  font-family: var(--font-body);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  min-height: 100vh;
+}
+
+h1, h2, h3, h4 {
+  font-family: var(--font-display);
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+
+/* Reusable surface + control primitives */
+@layer components {
+  .card {
+    background: linear-gradient(180deg, rgba(29, 32, 73, 0.6), rgba(22, 24, 58, 0.55));
+    border: 1px solid var(--color-line);
+    border-radius: var(--radius-xl);
+    backdrop-filter: blur(8px);
+  }
+
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    font-weight: 600;
+    border-radius: 0.85rem;
+    padding: 0.7rem 1.15rem;
+    transition: transform 0.12s ease, background 0.18s ease, opacity 0.18s ease, box-shadow 0.18s ease;
+    cursor: pointer;
+    white-space: nowrap;
+  }
+  .btn:disabled { opacity: 0.5; cursor: not-allowed; }
+  .btn:not(:disabled):active { transform: translateY(1px); }
+
+  .btn-gold {
+    background: linear-gradient(180deg, var(--color-gold-soft), var(--color-gold));
+    color: #2a1d00;
+    box-shadow: 0 8px 24px -10px rgba(246, 193, 75, 0.7);
+  }
+  .btn-gold:not(:disabled):hover { box-shadow: 0 10px 30px -8px rgba(246, 193, 75, 0.85); }
+
+  .btn-ghost {
+    background: rgba(255, 255, 255, 0.04);
+    color: var(--color-ink-text);
+    border: 1px solid var(--color-line);
+  }
+  .btn-ghost:not(:disabled):hover { background: rgba(255, 255, 255, 0.08); }
+
+  .chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    padding: 0.3rem 0.7rem;
+    border-radius: 999px;
+    border: 1px solid var(--color-line);
+    background: rgba(255, 255, 255, 0.03);
+  }
+
+  .field {
+    width: 100%;
+    background: rgba(9, 10, 26, 0.6);
+    border: 1px solid var(--color-line);
+    border-radius: 0.85rem;
+    padding: 0.75rem 0.9rem;
+    color: var(--color-ink-text);
+    font-size: 1rem;
+    outline: none;
+    transition: border 0.15s ease, box-shadow 0.15s ease;
+  }
+  .field:focus {
+    border-color: var(--color-gold);
+    box-shadow: 0 0 0 3px rgba(246, 193, 75, 0.18);
+  }
+}
+
+@keyframes shimmer {
+  0% { background-position: -480px 0; }
+  100% { background-position: 480px 0; }
+}
+.skeleton {
+  background: linear-gradient(90deg, rgba(255,255,255,0.04) 25%, rgba(255,255,255,0.09) 37%, rgba(255,255,255,0.04) 63%);
+  background-size: 480px 100%;
+  animation: shimmer 1.4s infinite linear;
+  border-radius: 0.6rem;
+}
+
+@keyframes pulse-ring {
+  0% { box-shadow: 0 0 0 0 rgba(246, 193, 75, 0.45); }
+  70% { box-shadow: 0 0 0 14px rgba(246, 193, 75, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(246, 193, 75, 0); }
+}
+.pulse-ring { animation: pulse-ring 2s infinite; }
