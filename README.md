@@ -10,7 +10,7 @@ the suspense.
 
 **Live on Stellar Testnet → https://suwerte.vercel.app**
 
-![Landing](../screen-shot/01-landing.jpg)
+![Landing](screen-shot/01-landing.jpg)
 
 ---
 
@@ -37,7 +37,7 @@ Suwerte brings that idea on-chain, where the draw is provable and the money move
    `withdraw(saver, amount)` to pull their full principal back out of the contract whenever the
    round is open. A draw can never reduce principal — the no-loss rule is enforced in Rust.
 
-![Play](../screen-shot/05-deposit-success.jpg)
+![Play](screen-shot/05-deposit-success.jpg)
 
 ## What makes it real
 
@@ -87,8 +87,18 @@ Deployment details (ids, tx hashes, wasm hash) live in `contracts/DEPLOYMENT.md`
 
 | | |
 |---|---|
-| ![Connect](../screen-shot/02-connect-popup.jpg) | ![Deposit](../screen-shot/04-deposit.jpg) |
-| ![Stats](../screen-shot/06-stats.jpg) | ![Mobile](../screen-shot/07-mobile.jpg) |
+| ![Connect](screen-shot/02-connect-popup.jpg) | ![Deposit](screen-shot/04-deposit.jpg) |
+| ![Stats](screen-shot/06-stats.jpg) | ![Mobile](screen-shot/07-mobile.jpg) |
+
+## Live stats
+
+Real interaction counts from the `sessions`, `deposits` and `rounds` tables — no seeded rows, no demo users. The page and `GET /api/stats` read straight from Postgres.
+
+![Stats](screen-shot/stats.jpg)
+
+| Wallets | Logins | Rounds | Completed | Deposits | Prize paid (XLM) | Winners |
+|---:|---:|---:|---:|---:|---:|---:|
+| 111 | 119 | 2 | 1 | 9 | 21 | 1 |
 
 ## Stack
 
