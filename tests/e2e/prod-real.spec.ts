@@ -116,9 +116,11 @@ test('real Freighter: connect + on-chain deposit -> real tx hash', async () => {
   await expect(page.getByRole('button', { name: /Withdraw/i }).first()).toBeVisible({ timeout: 20_000 });
 
   const explorer = page.getByRole('link', { name: new RegExp(txHash.slice(0, 4)) });
+  // Explorer network segment must match NEXT_PUBLIC_STELLAR_NETWORK (public on mainnet, testnet on testnet).
+  const explorerSegment = process.env.NEXT_PUBLIC_STELLAR_NETWORK === 'public' ? 'public' : 'testnet';
   await expect(explorer.first()).toHaveAttribute(
     'href',
-    new RegExp(`stellar\\.expert/explorer/testnet/tx/${txHash}`),
+    new RegExp(`stellar\\.expert/explorer/${explorerSegment}/tx/${txHash}`),
   );
   await page.waitForTimeout(800);
   await page.screenshot({ path: shot('05-deposit-success.jpg'), type: 'jpeg', quality: 85, fullPage: true });
