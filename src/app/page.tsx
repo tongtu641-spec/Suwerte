@@ -14,6 +14,7 @@ import {
 } from 'lucide-react';
 import { apiGet } from '@/lib/api';
 import { formatAmount, shortKey, explorerTx } from '@/lib/format';
+import { NETWORK_LABEL } from '@/lib/stellar-config';
 import type { CurrentRound } from '@/lib/types';
 
 export default function HomePage() {
@@ -204,7 +205,7 @@ function LiveRoundCard({ data, loading }: { data: CurrentRound | null; loading: 
           <span className="h-2 w-2 rounded-full bg-gold pulse-ring" />
           {data ? `Round ${data.round.roundNumber} · open` : 'Live round'}
         </span>
-        <span className="text-xs text-muted">Stellar Testnet</span>
+        <span className="text-xs text-muted">Stellar {NETWORK_LABEL}</span>
       </div>
 
       <p className="relative mt-6 text-sm text-muted">This week&apos;s prize</p>

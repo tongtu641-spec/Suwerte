@@ -17,7 +17,7 @@ const fraunces = Fraunces({
 export const metadata: Metadata = {
   title: 'Suwerte — No-Loss Prize Savings on Stellar',
   description:
-    'Pool XLM together, win the weekly prize, keep your principal. A provably-fair, no-loss prize-savings game on Stellar testnet.',
+    'Pool XLM together, win the weekly prize, keep your principal. A provably-fair, no-loss prize-savings game on Stellar.',
   metadataBase: new URL(process.env.NEXT_PUBLIC_APP_URL ?? 'http://localhost:3002'),
   openGraph: {
     title: 'Suwerte — No-Loss Prize Savings on Stellar',

@@ -8,7 +8,7 @@ sponsored prize — and **everyone else keeps every stroop of their principal**,
 on-chain at any time. The only thing you can win is the prize; the only thing you can lose is
 the suspense.
 
-**Live on Stellar Testnet → https://suwerte.vercel.app**
+**Live on Stellar mainnet → https://suwerte-ten.vercel.app** · [Contract on Stellar Expert](https://stellar.expert/explorer/public/contract/CCHM7Q7YSTQ4KCHKQS7HJKI5ZZWEPGQRLE4YSVCVZ3DYCTNHXPZ5KFFJ) · [Follow @SuwerteXLM](https://x.com/SuwerteXLM)
 
 ![Landing](screen-shot/01-landing.jpg)
 
@@ -44,10 +44,10 @@ Suwerte brings that idea on-chain, where the draw is provable and the money move
 - **A real Soroban contract.** `suwerte-pool` (Rust, soroban-sdk 22) custodies every saver's
   principal and runs the draw. Deposits, withdrawals, prize funding and the principal-weighted
   winner selection all happen on-chain — the "no-loss" promise is code, not a backend policy.
-  Live at [`CCYTFSNCHA5KY5EAPF63627JI33AQ4VOUDS36EDEP32IEOJ2LI7YEN4I`](https://stellar.expert/explorer/testnet/contract/CCYTFSNCHA5KY5EAPF63627JI33AQ4VOUDS36EDEP32IEOJ2LI7YEN4I).
+  Live on mainnet at [`CCHM7Q7YSTQ4KCHKQS7HJKI5ZZWEPGQRLE4YSVCVZ3DYCTNHXPZ5KFFJ`](https://stellar.expert/explorer/public/contract/CCHM7Q7YSTQ4KCHKQS7HJKI5ZZWEPGQRLE4YSVCVZ3DYCTNHXPZ5KFFJ). See `contracts/DEPLOYMENT.md` for testnet + deploy tx hashes.
 - **Real SEP-10 auth.** Connecting builds a challenge transaction, signs it pinned to the app's
-  network passphrase (testnet — *not* the wallet's active network), and verifies the signature
-  server-side before issuing a session cookie.
+  configured network passphrase (pinned via env — *not* the wallet's active network), and verifies
+  the signature server-side before issuing a session cookie.
 - **Real on-chain money.** Deposits/withdrawals are saver-signed contract calls; the draw is an
   admin-signed contract call that pays the winner. The server records a deposit only after the
   chain confirms it, reading the amount straight from the signed transaction. Every action shows a
@@ -59,13 +59,6 @@ Suwerte brings that idea on-chain, where the draw is provable and the money move
   `changeTrust`.
 - **No fake data.** Stats and history come only from real wallets completing real flows. Empty
   states say "nothing yet" instead of inventing people.
-
----
-## Demo & Pitch Deck
-
-- **Demo Video:** [Watch Demo](https://drive.google.com/file/d/1Ii38zfrGYpT0spTIBEsvLN5DNA4riAiE/view?usp=drive_link)
-- **Pitch Deck:** [View Pitch Deck](https://drive.google.com/file/d/1HL67lJrobOSaKGFgwRURV1GliHeQO_ha/view?usp=drive_link)
----
 
 ## Smart contract
 
@@ -85,7 +78,8 @@ Views: `principal_of`, `total_principal`, `prize_pool`, `total_savers`, `draw_co
 ```bash
 cd contracts
 cargo +1.89.0 test                 # 12 tests, incl. the no-loss invariant
-NETWORK=testnet ./scripts/deploy.sh  # build, optimize, deploy, initialize
+NETWORK=testnet ./scripts/deploy.sh                                # build, optimize, deploy, initialize
+# For mainnet: NETWORK=public IDENTITY=<funded-mainnet-key> ./scripts/deploy.sh
 ```
 
 Deployment details (ids, tx hashes, wasm hash) live in `contracts/DEPLOYMENT.md`.
@@ -103,9 +97,19 @@ Real interaction counts from the `sessions`, `deposits` and `rounds` tables — 
 
 ![Stats](screen-shot/stats.jpg)
 
+### Testnet (historical, pre-mainnet launch)
+
 | Wallets | Logins | Rounds | Completed | Deposits | Prize paid (XLM) | Winners |
 |---:|---:|---:|---:|---:|---:|---:|
 | 111 | 119 | 2 | 1 | 9 | 21 | 1 |
+
+### Mainnet (live, from `/api/stats`)
+
+| Wallets | Logins | Rounds | Completed | Deposits | Prize paid (XLM) | Winners |
+|---:|---:|---:|---:|---:|---:|---:|
+| live — see [suwerte-ten.vercel.app/stats](https://suuerte-ten.vercel.app/stats) and `GET /api/stats` | | | | | | |
+
+Mainnet launched fresh — counts come from the live `/api/stats` endpoint, no demo data, no seeded rows.
 
 ## Stack
 
@@ -156,17 +160,19 @@ pnpm dev            # http://localhost:3002
 
 ```
 DRIZZLE_DATABASE_URL           # Postgres connection string
-NEXT_PUBLIC_STELLAR_NETWORK    # testnet
-STELLAR_HORIZON_URL            # https://horizon-testnet.stellar.org
-STELLAR_NETWORK_PASSPHRASE     # Test SDF Network ; September 2015
-SOROBAN_RPC_URL                # https://soroban-testnet.stellar.org
-SOROBAN_POOL_CONTRACT_ID       # CCYTFSNCHA5KY5EAPF63627JI33AQ4VOUDS36EDEP32IEOJ2LI7YEN4I
+STELLAR_NETWORK                # "testnet" | "public" | "futurenet"
+NEXT_PUBLIC_STELLAR_NETWORK    # mirror of STELLAR_NETWORK, exposed to the client
+STELLAR_HORIZON_URL            # https://horizon-testnet.stellar.org | https://horizon.stellar.org
+STELLAR_NETWORK_PASSPHRASE     # matches STELLAR_NETWORK
+SOROBAN_RPC_URL                # https://soroban-testnet.stellar.org | https://soroban.stellar.org
+SOROBAN_POOL_CONTRACT_ID       # contract id from contracts/DEPLOYMENT.md
 NEXT_PUBLIC_POOL_CONTRACT_ID   # same id, exposed to the client for explorer links
-XLM_SAC_CONTRACT_ID            # CDLZFC3SYJYDZT7K67VZ75HPJVIEUVNIXF47ZG2FB2RMQQVU2HHGCYSC
+XLM_SAC_CONTRACT_ID            # native XLM SAC for the target network
 TREASURY_PUBLIC_KEY            # contract admin + prize funder + SEP-10 server
-TREASURY_SECRET_KEY            # signs fund_prize/draw + SEP-10 challenges (testnet)
+TREASURY_SECRET_KEY            # signs fund_prize/draw + SEP-10 challenges
 SESSION_SECRET                 # >= 32 chars
 USDC_ASSET_ISSUER_TESTNET      # testnet USDC issuer
+USDC_ASSET_ISSUER_PUBLIC       # mainnet USDC issuer (Circle)
 PRIZE_BASE_UNITS               # base prize in XLM (default 2)
 PRIZE_RATE_BPS                 # % of pool added to the prize (default 500 = 5%)
 ```
@@ -176,13 +182,15 @@ PRIZE_RATE_BPS                 # % of pool added to the prize (default 500 = 5%)
 ```bash
 pnpm test                                          # unit: fairness, amounts, http
 ( cd contracts && cargo +1.89.0 test )             # 12 contract tests (incl. no-loss)
-PLAYWRIGHT_BASE_URL=https://suwerte.vercel.app \
+PLAYWRIGHT_BASE_URL=https://suwerte-ten.vercel.app \
   pnpm exec playwright test                        # on-chain e2e against prod
 ```
 
 The e2e emulates Freighter via its real `postMessage` bridge and signs with a Node keypair, then
-drives connect → deposit on the live deployment, producing a real testnet transaction.
+drives connect → deposit on the live deployment, producing a real on-chain transaction.
 
 ---
 
-Built for the Stellar APAC Hackathon · Track: Savings & DeFi · Testnet only.
+**Links**: [Live app](https://suwerte-ten.vercel.app) · [Contract on Stellar Expert](https://stellar.expert/explorer/public/contract/CCHM7Q7YSTQ4KCHKQS7HJKI5ZZWEPGQRLE4YSVCVZ3DYCTNHXPZ5KFFJ) · [X / Twitter](https://x.com/SuwerteXLM)
+
+Built for the Stellar APAC Hackathon · Track: Savings & DeFi.

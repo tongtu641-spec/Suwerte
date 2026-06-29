@@ -15,7 +15,7 @@ STACK
    Drizzle ORM 0.45.2 on top of Postgres, currently hosted on Supabase. Schemas live in src/server/db/schema; the connection pool is initialised once in src/server/db/client.ts. Drizzle Kit pushes the schema with pnpm run db:push, which reads DRIZZLE_DATABASE_URL.
 
 4. BLOCKCHAIN
-   Stellar testnet. Smart contract suwerte-pool is Rust on soroban-sdk 22 in contracts/suwerte-pool; the WASM is deployed at CCYTFSNCHA5KY5EAPF63627JI33AQ4VOUDS36EDEP32IEOJ2LI7YEN4I. XLM flows through the native XLM Stellar Asset Contract at CDLZFC3SYJYDZT7K67VZ75HPJVIEUVNIXF47ZG2FB2RMQQVU2HHGCYSC. Soroban RPC at soroban-testnet.stellar.org and Horizon at horizon-testnet.stellar.org are both used. The app signs server-side ops with @stellar/stellar-sdk 15.1.0.
+   Stellar (network selected via STELLAR_NETWORK env: "testnet" or "public"). Smart contract suwerte-pool is Rust on soroban-sdk 22 in contracts/suwerte-pool; the WASM is deployed per network and the active contract id lives in contracts/DEPLOYMENT.md. XLM flows through the native XLM Stellar Asset Contract (id also per network, see DEPLOYMENT.md). Soroban RPC and Horizon URLs are env-configured, so the same code can target a local stack if needed. The app signs server-side ops with @stellar/stellar-sdk 15.1.0.
 
 5. WALLET
    Freighter via @stellar/freighter-api 6.0.1. The wallet provider uses requestAccess, getAddress, and signTransaction pinned to the testnet passphrase (NETWORK_PASSPHRASE). All saver-side transactions are built unsigned on the server and submitted through Freighter.
@@ -256,10 +256,10 @@ DEPLOY
    Postgres instance provisioned on Supabase. DRIZZLE_DATABASE_URL is the only reference to it. Schema is pushed with pnpm run db:push, which runs drizzle-kit push --force against the same URL.
 
 3. SOROBAN CONTRACT
-   Built and deployed with contracts/scripts/deploy.sh on Stellar testnet. The deploy script pins the toolchain to rust 1.89.0, optimizes the WASM, deploys it, and runs initialize(admin, token) with the treasury public key as admin and the XLM SAC as the escrow token. Last-known ids are recorded in contracts/DEPLOYMENT.md.
+   Built and deployed with contracts/scripts/deploy.sh on the target Stellar network (NETWORK env: "testnet" or "public"). The deploy script pins the toolchain to rust 1.89.0, optimizes the WASM, deploys it, and runs initialize(admin, token) with the treasury public key as admin and the XLM SAC as the escrow token. Per-network ids are recorded in contracts/DEPLOYMENT.md.
 
 4. STELLAR ENDPOINTS
-   Horizon at https://horizon-testnet.stellar.org. Soroban RPC at https://soroban-testnet.stellar.org. The app reads STELLAR_HORIZON_URL and SOROBAN_RPC_URL from env so the same code can target a local stack if needed.
+   Configured per deployment via env: STELLAR_HORIZON_URL and SOROBAN_RPC_URL. Defaults are testnet (https://horizon-testnet.stellar.org, https://soroban-testnet.stellar.org); mainnet uses https://horizon.stellar.org and https://soroban.stellar.org. The same code can target a local stack if needed.
 
 
 LIMITATIONS + KNOWN GAPS
