@@ -60,6 +60,12 @@ Suwerte brings that idea on-chain, where the draw is provable and the money move
 - **No fake data.** Stats and history come only from real wallets completing real flows. Empty
   states say "nothing yet" instead of inventing people.
 
+## Demo & Pitch Deck
+
+- **Demo Video:** [Watch Demo](https://drive.google.com/file/d/1Ii38zfrGYpT0spTIBEsvLN5DNA4riAiE/view?usp=drive_link)
+- **Pitch Deck:** [View Pitch Deck](https://drive.google.com/file/d/1HL67lJrobOSaKGFgwRURV1GliHeQO_ha/view?usp=drive_link)
+---
+
 ## Smart contract
 
 `contracts/suwerte-pool` — the no-loss prize-pool, written in Rust on `soroban-sdk` 22.
