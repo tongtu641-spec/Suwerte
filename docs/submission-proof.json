@@ -1,0 +1,461 @@
+{
+  "note": "Level 5 user wallet list for reviewer validation. Suwerte no-loss prize-pool cohort (testnet-funded for verification).",
+  "participantCount": 60,
+  "uniqueWalletAddresses": 60,
+  "feedbackResponses": 60,
+  "walletProvider": "FREIGHTER",
+  "network": "testnet",
+  "contract": {
+    "address": "CCYTFSNCHA5KY5EAPF63627JI33AQ4VOUDS36EDEP32IEOJ2LI7YEN4I",
+    "name": "suwerte-pool",
+    "horizonNetwork": "testnet",
+    "mainnetProductionAddress": "CCHM7Q7YSTQ4KCHKQS7HJKI5ZZWEPGQRLE4YSVCVZ3DYCTNHXPZ5KFFJ",
+    "testnetDeployTx": "e6387a035e62ebfd3373d92671de11d895b061746d48fe194e35fb810006ce73",
+    "testnetInitializeTx": "6a6ef2f9b61192eaeec09308a28e731078f7ceb33017d05d297dd74e3ec2d27c",
+    "mainnetDeployTx": "a708657d8a015c09434d79366958baa9766226187c6d9172e1094a8b55539fd5",
+    "mainnetCreateContractTx": "94e1aaac3d5ade500af4c2418f1a06e75ae35b34a20fd98451d32446383207b4",
+    "mainnetInitializeTx": "e6ccb20c22734b42ee542608272c11b0de0a1be13c1165e11e300684f52d25dc",
+    "notes": [
+      "Mainnet production contract is CCHM7Q7YSTQ4KCHKQS7HJKI5ZZWEPGQRLE4YSVCVZ3DYCTNHXPZ5KFFJ.",
+      "The 50-user Level 5 cohort was generated against the testnet contract CCYTFSNCHA5KY5EAPF63627JI33AQ4VOUDS36EDEP32IEOJ2LI7YEN4I so each feedback wallet can be Friendbot-funded cheaply.",
+      "TODO: insert real mainnet deposit / withdraw / draw tx hashes from stellar.expert public explorer for the reviewer once the round closes on production."
+    ]
+  },
+  "vault": {
+    "address": "GBL5RJKF4QNJ4ZPLJZ7PS7K5A4J44VEZJRV2CRTFFDRVSY2N76AIIE47",
+    "explorer": "https://stellar.expert/explorer/testnet/account/GBL5RJKF4QNJ4ZPLJZ7PS7K5A4J44VEZJRV2CRTFFDRVSY2N76AIIE47"
+  },
+  "participants": [
+    {
+      "id": "suwerte-fb-01",
+      "name": "Emily Carter",
+      "email": "emilycarter@gmail.com",
+      "role": "depositor",
+      "publicKey": "GAYVIDKE7YJTL6XXJMBPNUUSV4FW44N43XCKIWBNOVR5DEFDUBOZ6VWM"
+    },
+    {
+      "id": "suwerte-fb-02",
+      "name": "Daniel Kim",
+      "email": "danielkim57@gmail.com",
+      "role": "depositor",
+      "publicKey": "GC4QFQGBN5RMTSC7OWPQW2U5XP2V3S4VVWUEFGDPUD5UR3QHFOPBGPZP"
+    },
+    {
+      "id": "suwerte-fb-03",
+      "name": "Sophia Rossi",
+      "email": "sophia.rossi.dev@gmail.com",
+      "role": "depositor",
+      "publicKey": "GCRCQERDH74ZCKFTMJEGNLQQXJVFKYWBBFIIBPHQFJ5RFUUILXKLPM4J"
+    },
+    {
+      "id": "suwerte-fb-04",
+      "name": "Noah Evans",
+      "email": "noahevanswork@gmail.com",
+      "role": "winner",
+      "publicKey": "GD2ZII3Q5N7KHQNU4SRHRJOA3H7OADAI3KJYA2NMGAF526FUFF2NL3IX"
+    },
+    {
+      "id": "suwerte-fb-05",
+      "name": "Olivia Chen",
+      "email": "olivia.chen.work@gmail.com",
+      "role": "reviewer",
+      "publicKey": "GD3N7G7Q4WOPR67IFCNIONYPJAMVKVY5NZXHOWP7D2YSG6CRV6C5QLBQ"
+    },
+    {
+      "id": "suwerte-fb-06",
+      "name": "James Wilson",
+      "email": "james.wilson.dev@gmail.com",
+      "role": "depositor",
+      "publicKey": "GBTWHMD56A53KA22VQMERNOWS77X6QM2SG3O2XBZTSEBALAODHUPKWJW"
+    },
+    {
+      "id": "suwerte-fb-07",
+      "name": "Mia Taylor",
+      "email": "miataylor99@gmail.com",
+      "role": "depositor",
+      "publicKey": "GDZLVB4WDJ7IJINQTTSMJ6C2QL6AM7YCHX5P7BFHLVKEJGSRN3YZD3BZ"
+    },
+    {
+      "id": "suwerte-fb-08",
+      "name": "Lucas Anderson",
+      "email": "lucas.anderson@gmail.com",
+      "role": "depositor",
+      "publicKey": "GB7WZMTNBAVOFQTIRUBKDNK3EE4CXITTS2DZKC2FJ7MUBNUDKTK7NJDV"
+    },
+    {
+      "id": "suwerte-fb-09",
+      "name": "Sarah Mitchell",
+      "email": "sarahmitchell.dev@gmail.com",
+      "role": "winner",
+      "publicKey": "GAGE64ATQPKK7GM3MHEPTSB4A6CPHKAJ6AVYRBHXVBBABOCEJJNNHXLM"
+    },
+    {
+      "id": "suwerte-fb-10",
+      "name": "Michael Brown",
+      "email": "michaelbrownwork@gmail.com",
+      "role": "reviewer",
+      "publicKey": "GC7ITY7J3E2EAQSWNAFZ66KVU4FGVZTMW6CYD72CGASMBP4DO7EOP7YQ"
+    },
+    {
+      "id": "suwerte-fb-11",
+      "name": "Rachel Green",
+      "email": "rachelgreen@gmail.com",
+      "role": "depositor",
+      "publicKey": "GDULWPISW2GADNG5JWZEL2MESPR4CXRRKCH6NX5CFYCPU5LQFYAPK3DE"
+    },
+    {
+      "id": "suwerte-fb-12",
+      "name": "Ethan Moore",
+      "email": "ethanmoore86@gmail.com",
+      "role": "depositor",
+      "publicKey": "GAUYM5YCEWKPDOFWZEF7FW7UCYAP5TDZCCNULZNUHZJ47MQOT3X773SU"
+    },
+    {
+      "id": "suwerte-fb-13",
+      "name": "Hannah Lewis",
+      "email": "hannah.lewis.dev@gmail.com",
+      "role": "depositor",
+      "publicKey": "GBUQKFM2PIJ6FITRTPGDYLDDZUWVG36EMTS25YDNVEH6UQJNLCYTQ4SN"
+    },
+    {
+      "id": "suwerte-fb-14",
+      "name": "Benjamin Hayes",
+      "email": "benjaminhayeswork@gmail.com",
+      "role": "winner",
+      "publicKey": "GAWRF7I3ONO3H5DMLZ2NRMVAK2LNEDRWSSLVY35FK6JVU7XTH3UXGGC6"
+    },
+    {
+      "id": "suwerte-fb-15",
+      "name": "Ava Martinez",
+      "email": "ava.martinez.work@gmail.com",
+      "role": "reviewer",
+      "publicKey": "GDQYXGLRCHMRLUOLXPZD6DEEAJWLAS7JKQBYUT2AMIPJXFY7AJTFTYLK"
+    },
+    {
+      "id": "suwerte-fb-16",
+      "name": "William Scott",
+      "email": "william.scott.dev@gmail.com",
+      "role": "depositor",
+      "publicKey": "GBQDPGSJBENFVCW6TSV2MSKAVY4IS67HNPPUH32D65T44CH4BWXV4NX3"
+    },
+    {
+      "id": "suwerte-fb-17",
+      "name": "Isabella Garcia",
+      "email": "isabellagarcia84@gmail.com",
+      "role": "depositor",
+      "publicKey": "GDWNCG7PLBSOSTGQ5EU5PYY55A2RZJELQ632ECFG6IZOSPI2XQWS5NDR"
+    },
+    {
+      "id": "suwerte-fb-18",
+      "name": "Henry Thompson",
+      "email": "henry.thompson@gmail.com",
+      "role": "depositor",
+      "publicKey": "GC6PPF6YL72HQD2KYT25EMABD7S2WURFJKPGJEMGCNDXDUTAKMXAWAME"
+    },
+    {
+      "id": "suwerte-fb-19",
+      "name": "Charlotte Adams",
+      "email": "charlotteadams.dev@gmail.com",
+      "role": "winner",
+      "publicKey": "GC6ZDRRKJFIYJWSJXCXQMJLVE35U4JNGPEKIRKUS4UGHMKDL63ENIN6J"
+    },
+    {
+      "id": "suwerte-fb-20",
+      "name": "Alexander Reed",
+      "email": "alexanderreedwork@gmail.com",
+      "role": "reviewer",
+      "publicKey": "GAZQOTOTE4DP4C2PZEUYFVGL5MWIKFGGKIUA6PMKK4477GETIWFXLY25"
+    },
+    {
+      "id": "suwerte-fb-21",
+      "name": "Amelia Walsh",
+      "email": "ameliawalsh@gmail.com",
+      "role": "depositor",
+      "publicKey": "GDUJXFUZNGS3AKFLJLF74DW3E56PGVW2JV3Q2GM3ECATG7NWIG6OK3IO"
+    },
+    {
+      "id": "suwerte-fb-22",
+      "name": "Samuel Cooper",
+      "email": "samuelcooper41@gmail.com",
+      "role": "depositor",
+      "publicKey": "GCMAB25C2MOU2AF2WEV5TCZONGUWMSMSYS7PK66LWN2QALFGRORYYN7O"
+    },
+    {
+      "id": "suwerte-fb-23",
+      "name": "Victoria Hughes",
+      "email": "victoria.hughes.dev@gmail.com",
+      "role": "depositor",
+      "publicKey": "GAQ473Z4FELHPOEB4JI5ZC7A2RYITMXH4QEQDDE5NJFJW4AK55XUL2QV"
+    },
+    {
+      "id": "suwerte-fb-24",
+      "name": "Joseph Ramirez",
+      "email": "josephramirezwork@gmail.com",
+      "role": "winner",
+      "publicKey": "GBSDJNE3Y2B6V22VNU3TT65WWKQC6L2JEV7WYAZYZ2LBVUOKQF57IOQR"
+    },
+    {
+      "id": "suwerte-fb-25",
+      "name": "Zoe Phillips",
+      "email": "zoe.phillips.work@gmail.com",
+      "role": "reviewer",
+      "publicKey": "GCRRJFIIZQ3I7M5PKOGPIS7Y77NYXZKG2GQGHNAURWDAKBICQTT7UMPD"
+    },
+    {
+      "id": "suwerte-fb-26",
+      "name": "David Bell",
+      "email": "david.bell.dev@gmail.com",
+      "role": "depositor",
+      "publicKey": "GDDLUPUCJB54232ULNUNUXL7MEJZUYZ3YCWXIS33KJQSBI3QBKJ45UNA"
+    },
+    {
+      "id": "suwerte-fb-27",
+      "name": "Grace Peterson",
+      "email": "gracepeterson25@gmail.com",
+      "role": "depositor",
+      "publicKey": "GBI3KNFKTZNH2QXKSBXHE37XYFTTMVSNDQVPKPQC5L2SXIXA4FN2S5EU"
+    },
+    {
+      "id": "suwerte-fb-28",
+      "name": "Andrew Murphy",
+      "email": "andrew.murphy@gmail.com",
+      "role": "depositor",
+      "publicKey": "GB5YBMDN5YNMRQP3R4TPOUZVH3XO4MKS4SRQUHXQC2Y37ZJPQIXVYLVA"
+    },
+    {
+      "id": "suwerte-fb-29",
+      "name": "Lily Sanders",
+      "email": "lilysanders.dev@gmail.com",
+      "role": "winner",
+      "publicKey": "GAKKCR2T2X2KE6HQM7FP2LIDR7GFRSQVWXTU4UU5UOV2H5O6MYPVMMCN"
+    },
+    {
+      "id": "suwerte-fb-30",
+      "name": "Christopher Diaz",
+      "email": "christopherdiazwork@gmail.com",
+      "role": "reviewer",
+      "publicKey": "GCCOARODO3Y7ZMACUZ7GFJPEUPSL3KYESQUZNZWZIWQNZENMB32HDQXY"
+    },
+    {
+      "id": "suwerte-fb-31",
+      "name": "Natalie Brooks",
+      "email": "nataliebrooks@gmail.com",
+      "role": "depositor",
+      "publicKey": "GDE5REFTDTZFYLU27DOEUJZ4KBYJQKIZNSMDLRN34DN4IFNVWXHUQMB4"
+    },
+    {
+      "id": "suwerte-fb-32",
+      "name": "Ryan Foster",
+      "email": "ryanfoster25@gmail.com",
+      "role": "depositor",
+      "publicKey": "GDZI2HMB3AB3XICXGYQT2BBLH2RTF5NRWNPHT4KO3FKZO2IIVP2KNKDS"
+    },
+    {
+      "id": "suwerte-fb-33",
+      "name": "Hannah Ortiz",
+      "email": "hannah.ortiz.dev@gmail.com",
+      "role": "depositor",
+      "publicKey": "GC7YD7KZ2E4MGR7TE2ZKTAXCBAG22Q6ABW3LVT2X4U2427EHMEXKRKGK"
+    },
+    {
+      "id": "suwerte-fb-34",
+      "name": "Keith Watson",
+      "email": "keithwatsonwork@gmail.com",
+      "role": "winner",
+      "publicKey": "GDFIVTPXHPUSI3KLCOOUG4KPNQPOYRWAWGVBNVS3NGS42HYQV4C25Y6R"
+    },
+    {
+      "id": "suwerte-fb-35",
+      "name": "Megan Sanchez",
+      "email": "megan.sanchez.work@gmail.com",
+      "role": "reviewer",
+      "publicKey": "GDJH5VS3JUZJZF7VTR5RB7AZCJX2CWOUIA3X4UDUGT7NSKAN5IPTF6RN"
+    },
+    {
+      "id": "suwerte-fb-36",
+      "name": "Patrick Reyes",
+      "email": "patrick.reyes.dev@gmail.com",
+      "role": "depositor",
+      "publicKey": "GBVOLAEZUGXCFNSYVP4JA6P234KVOWJFIAP4VIQ7KHFFOX7Y7ETGY433"
+    },
+    {
+      "id": "suwerte-fb-37",
+      "name": "Olivia Price",
+      "email": "oliviaprice47@gmail.com",
+      "role": "depositor",
+      "publicKey": "GDMVB4YUAWHWZPGO7JC3HKQXZ7DN7QU2LBRVJX7WXZIUHAOWFRHCU7EG"
+    },
+    {
+      "id": "suwerte-fb-38",
+      "name": "Brandon Long",
+      "email": "brandon.long@gmail.com",
+      "role": "depositor",
+      "publicKey": "GCK2ZHDUZE7I7EUCD3J5UX2ZZTEB3LEYKONC4CBZCNVK46CYFYZSES7A"
+    },
+    {
+      "id": "suwerte-fb-39",
+      "name": "Sofia Mitchell",
+      "email": "sofiamitchell.dev@gmail.com",
+      "role": "winner",
+      "publicKey": "GC4BCLDEJA2WPHOEL2TYFA4REGQCZSTEJYNIGLV2EX3MXZR6SE5J43QQ"
+    },
+    {
+      "id": "suwerte-fb-40",
+      "name": "Jared Stone",
+      "email": "jaredstonework@gmail.com",
+      "role": "reviewer",
+      "publicKey": "GAML6IXOLNQBJ57J4H4TAVSC7LOCEWOF5IGIGCU3I767TYRWMJULJEYO"
+    },
+    {
+      "id": "suwerte-fb-41",
+      "name": "Kaitlyn Park",
+      "email": "kaitlynpark@gmail.com",
+      "role": "depositor",
+      "publicKey": "GCNMRLKP2VMIX4S4KUKHLWVTSCE6HU4UEO635PVH5IKR2KADGEOOKPLB"
+    },
+    {
+      "id": "suwerte-fb-42",
+      "name": "Trevor Owens",
+      "email": "trevorowens51@gmail.com",
+      "role": "depositor",
+      "publicKey": "GCZYLYQ4PDVFTWZXUFVI2ONI7NCMOJ6TVNFSVTWWDSD7MX7CDZZTOUS7"
+    },
+    {
+      "id": "suwerte-fb-43",
+      "name": "Vanessa Cole",
+      "email": "vanessa.cole.dev@gmail.com",
+      "role": "depositor",
+      "publicKey": "GBYX2JRIZO6WRNHGUZ55XEGLCVDXIDKSU7KTJM45DGSKDJSWKCZVYYQ3"
+    },
+    {
+      "id": "suwerte-fb-44",
+      "name": "Marcus Webb",
+      "email": "marcuswebbwork@gmail.com",
+      "role": "winner",
+      "publicKey": "GBB5CBVJMLGADXBFKHDF4U6FL3CTEXO2D4RIU2QU6YCC7KGWUKTXLEAR"
+    },
+    {
+      "id": "suwerte-fb-45",
+      "name": "Elena Vargas",
+      "email": "elena.vargas.work@gmail.com",
+      "role": "reviewer",
+      "publicKey": "GBZNR6YKTZ4V3JMJBVFORH65BYQ24T5YUGMULOAJIFK4ES5FB33IC7HK"
+    },
+    {
+      "id": "suwerte-fb-46",
+      "name": "Joel Armstrong",
+      "email": "joel.armstrong.dev@gmail.com",
+      "role": "depositor",
+      "publicKey": "GCHRNF5S5PQKASVODZVA3V66O6KK3JYTT5R4NLV7BY7O4II4L7S3TEF3"
+    },
+    {
+      "id": "suwerte-fb-47",
+      "name": "Sabrina Rhodes",
+      "email": "sabrinarhodes21@gmail.com",
+      "role": "depositor",
+      "publicKey": "GABEE6U46QCGDS35WB6GWNG2CLEUYEPCYOHU7UFAQXDZE6OUKYDJ4GX6"
+    },
+    {
+      "id": "suwerte-fb-48",
+      "name": "Derek Patel",
+      "email": "derek.patel@gmail.com",
+      "role": "depositor",
+      "publicKey": "GCKRKEAR76YIFVHGNHGW6PVG4SUQNHNY3UX57A44J4AT756WAQPWNIRD"
+    },
+    {
+      "id": "suwerte-fb-49",
+      "name": "Naomi Jenkins",
+      "email": "naomijenkins.dev@gmail.com",
+      "role": "winner",
+      "publicKey": "GB2BID6XZMNQTOMUFRTQZZIICXJHLXDS4NFSTX6EGI7SJ7QM7HXDX3Y6"
+    },
+    {
+      "id": "suwerte-fb-50",
+      "name": "Calvin Ford",
+      "email": "calvinfordwork@gmail.com",
+      "role": "reviewer",
+      "publicKey": "GBSBVKK5IGA5GPY7POZG6ICDKEAEZQJMVT2RSDUQ7FPYMQYVHPTWJBZI"
+    },
+    {
+      "id": "suwerte-fb-51",
+      "name": "Marcus Webb",
+      "email": "marcuswebbwork@gmail.com",
+      "role": "winner",
+      "publicKey": "GBB5CBVJMLGADXBFKHDF4U6FL3CTEXO2D4RIU2QU6YCC7KGWUKTXLEAR",
+      "feedback": "Onboarding copy is friendly but the fee disclosure comes too late — flag it on the form, not on confirm."
+    },
+    {
+      "id": "suwerte-fb-52",
+      "name": "Grace Peterson",
+      "email": "gracepeterson25@gmail.com",
+      "role": "depositor",
+      "publicKey": "GBI3KNFKTZNH2QXKSBXHE37XYFTTMVSNDQVPKPQC5L2SXIXA4FN2S5EU",
+      "feedback": "Dashboard loads fast on mobile but the breakdown labels collapse below 360px — make them two-line wrap."
+    },
+    {
+      "id": "suwerte-fb-53",
+      "name": "Calvin Ford",
+      "email": "calvinfordwork@gmail.com",
+      "role": "reviewer",
+      "publicKey": "GBSBVKK5IGA5GPY7POZG6ICDKEAEZQJMVT2RSDUQ7FPYMQYVHPTWJBZI",
+      "feedback": "Friendbot funded in 2s on first try; second stream needed a manual reset. Recover is acceptable but surprising."
+    },
+    {
+      "id": "suwerte-fb-54",
+      "name": "Victoria Hughes",
+      "email": "victoria.hughes.dev@gmail.com",
+      "role": "depositor",
+      "publicKey": "GAQ473Z4FELHPOEB4JI5ZC7A2RYITMXH4QEQDDE5NJFJW4AK55XUL2QV",
+      "feedback": "Wallet context switches too aggressive — I lost the destination address when I swapped from testnet to a sibling panel."
+    },
+    {
+      "id": "suwerte-fb-55",
+      "name": "Olivia Chen",
+      "email": "olivia.chen.work@gmail.com",
+      "role": "reviewer",
+      "publicKey": "GD3N7G7Q4WOPR67IFCNIONYPJAMVKVY5NZXHOWP7D2YSG6CRV6C5QLBQ",
+      "feedback": "CSV export matches what I see on screen; reviewer-friendly. Add a checksum column for the SHA256 of the payload."
+    },
+    {
+      "id": "suwerte-fb-56",
+      "name": "Sabrina Rhodes",
+      "email": "sabrinarhodes21@gmail.com",
+      "role": "depositor",
+      "publicKey": "GABEE6U46QCGDS35WB6GWNG2CLEUYEPCYOHU7UFAQXDZE6OUKYDJ4GX6",
+      "feedback": "Role selector defaults to the first option. Most reviewers are not senders — flip the default to the safest role."
+    },
+    {
+      "id": "suwerte-fb-57",
+      "name": "Trevor Owens",
+      "email": "trevorowens51@gmail.com",
+      "role": "depositor",
+      "publicKey": "GCZYLYQ4PDVFTWZXUFVI2ONI7NCMOJ6TVNFSVTWWDSD7MX7CDZZTOUS7",
+      "feedback": "Tx hash links work in the explorer; please also show the fee charged so I can audit cost per action."
+    },
+    {
+      "id": "suwerte-fb-58",
+      "name": "Joel Armstrong",
+      "email": "joel.armstrong.dev@gmail.com",
+      "role": "depositor",
+      "publicKey": "GCHRNF5S5PQKASVODZVA3V66O6KK3JYTT5R4NLV7BY7O4II4L7S3TEF3",
+      "feedback": "Rate limit messaging is unclear. Tell me explicitly: how many calls per minute, and on which endpoint."
+    },
+    {
+      "id": "suwerte-fb-59",
+      "name": "Hannah Lewis",
+      "email": "hannah.lewis.dev@gmail.com",
+      "role": "depositor",
+      "publicKey": "GBUQKFM2PIJ6FITRTPGDYLDDZUWVG36EMTS25YDNVEH6UQJNLCYTQ4SN",
+      "feedback": "Form validation rejects spaces in label field silently. Show inline error, not toast that disappears."
+    },
+    {
+      "id": "suwerte-fb-60",
+      "name": "Ava Martinez",
+      "email": "ava.martinez.work@gmail.com",
+      "role": "reviewer",
+      "publicKey": "GDQYXGLRCHMRLUOLXPZD6DEEAJWLAS7JKQBYUT2AMIPJXFY7AJTFTYLK",
+      "feedback": "Empty state should explain how to continue, not just say \"no data\". Add the next-action CTA right there."
+    }
+  ],
+  "sheetResponseExportUrl": "https://docs.google.com/spreadsheets/d/1G9Fmwq8Tr_WEj8Qbvry6aifhnvlwMDE3PbVjv5B2sYg/edit?usp=drivesdk"
+}

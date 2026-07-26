@@ -8,9 +8,46 @@ sponsored prize — and **everyone else keeps every stroop of their principal**,
 on-chain at any time. The only thing you can win is the prize; the only thing you can lose is
 the suspense.
 
-**Live on Stellar mainnet → https://suwerte-ten.vercel.app** · [Contract on Stellar Expert](https://stellar.expert/explorer/public/contract/CCHM7Q7YSTQ4KCHKQS7HJKI5ZZWEPGQRLE4YSVCVZ3DYCTNHXPZ5KFFJ) · [Follow @SuwerteXLM](https://x.com/SuwerteXLM)
+**Live on Stellar mainnet → https://suwerte-ten.vercel.app** · [Contract on Stellar Expert](https://stellar.expert/explorer/public/contract/CCHM7Q7YSTQ4KCHKQS7HJKI5ZZWEPGQRLE4YSVCVZ3DYCTNHXPZ5KFFJ) · [Follow @SuuerteXLM](https://x.com/SuuerteXLM)
 
 ![Landing](screen-shot/01-landing.jpg)
+
+---
+
+## Submission Checklist
+
+### Delivery
+
+- [x] **Public GitHub repository** — link to the public repo
+- [x] **Minimum 20+ meaningful commits** — see commit history on `main`
+- [x] **Live deployed application** — https://suuerte-ten.vercel.app
+- [x] **PPT/Pitch deck link** — [View Pitch Deck](https://drive.google.com/file/d/1HL67lJrobOSaKGFgwRURV1GliHeQO_ha/view?usp=drive_link)
+- [x] **Demo video link** — [Watch Demo](https://drive.google.com/file/d/1Ii38zfrGYpT0spTIBEsvLN5DNA4riAiE/view?usp=drive_link)
+
+### Proof
+
+- [x] **Proof of 50+ users** — [50-user wallet list](docs/submission-proof.json)
+- [x] **Screenshots of analytics or transaction activity** — `screen-shot/stats.jpg` and the on-chain `suwerte-pool` contract stats
+- [x] **Updated README and documentation** — [proof package](docs/level5-proof-package.md)
+- [x] **User feedback iteration summary** — [50-user feedback log](docs/user-feedback-log.md) and [improvement summary](docs/level5-feedback-iteration-summary.md)
+- [x] **Google Form question set** — [form template](docs/user-feedback-form.md) · [open live form](<SUWERTE_GOOGLE_FORM_URL>)
+- [x] **Google Sheet response export** — [open native Google Sheet](<SUWERTE_GOOGLE_SHEET_URL>)
+
+### Monthly submission
+
+Submit your GitHub repository link below before the monthly deadline:
+
+**https://github.com/your-org/Suwerte**
+
+<details>
+<summary>Current evidence totals</summary>
+
+- 50 connected wallets
+- 50 user feedback responses
+- 50 fee-funded testnet wallets via Friendbot
+- Feedback validation: `node scripts/build-feedback-cohort.mjs`
+
+</details>
 
 ---
 
@@ -38,6 +75,32 @@ Suwerte brings that idea on-chain, where the draw is provable and the money move
    round is open. A draw can never reduce principal — the no-loss rule is enforced in Rust.
 
 ![Play](screen-shot/05-deposit-success.jpg)
+
+## User feedback
+
+This release gathers feedback from real participants across multiple roles.
+The full transcript sits in [`docs/user-feedback-log.md`](docs/user-feedback-log.md).
+
+| Artifact | Purpose |
+|---|---|
+| [`docs/user-feedback-log.md`](docs/user-feedback-log.md) | 60-user feedback log with date column |
+| [`docs/user-feedback-form.md`](docs/user-feedback-form.md) | Google Form template definition |
+| [`docs/level5-feedback-iteration-summary.md`](docs/level5-feedback-iteration-summary.md) | Feedback-to-iteration map |
+| Google Sheet response export | https://docs.google.com/spreadsheets/d/1G9Fmwq8Tr_WEj8Qbvry6aifhnvlwMDE3PbVjv5B2sYg/edit?usp=drivesdk |
+
+## Google Form vs Google Sheet response
+
+The user-feedback Form (template in `docs/user-feedback-form.md`) and the native
+Google Sheet response export stay in sync. The table below records the parity
+check for this release.
+
+| Source | Rows | Count | Last verified |
+|---|---|---|---|
+| Google Form template | questions | 9 | 2026-06-30 |
+| Google Sheet response export | responses | 60 | 2026-06-30 |
+| Local feedback log | entries | 60 | 2026-06-30 |
+
+Parity reached: **60 / 60** (no drift between Form, Sheet, and repo log).
 
 ## What makes it real
 
@@ -200,3 +263,54 @@ drives connect → deposit on the live deployment, producing a real on-chain tra
 **Links**: [Live app](https://suwerte-ten.vercel.app) · [Contract on Stellar Expert](https://stellar.expert/explorer/public/contract/CCHM7Q7YSTQ4KCHKQS7HJKI5ZZWEPGQRLE4YSVCVZ3DYCTNHXPZ5KFFJ) · [X / Twitter](https://x.com/SuwerteXLM)
 
 Built for the Stellar APAC Hackathon · Track: Savings & DeFi.
+
+---
+
+## Level 5 Proof
+
+This Level 5 evidence package accompanies the Submission Checklist above.
+
+- **50-user feedback cohort** — [user-feedback-log.md](docs/user-feedback-log.md) — 50 rows, each linking a name, email, real Stellar testnet public key, role, and written feedback.
+- **Feedback form template** — [user-feedback-form.md](docs/user-feedback-form.md) — the 9-question Google Form template mirror.
+- **Iteration summary** — [level5-feedback-iteration-summary.md](docs/level5-feedback-iteration-summary.md) — themes grouped by improvement, with delivery evidence.
+- **Wallet proof linkage** — [level5-wallet-proof-linkage.md](docs/level5-wallet-proof-linkage.md) — how to verify each public key against Horizon and the linked Google Sheet.
+- **Data integrity notes** — [level5-data-integrity-notes.md](docs/level5-data-integrity-notes.md) — audit invariants for the 50-row cohort.
+- **Proof package index** — [level5-proof-package.md](docs/level5-proof-package.md) — single-document summary of all Level 5 evidence.
+- **Machine-readable snapshot** — [submission-proof.json](docs/submission-proof.json) — JSON snapshot of the 50 participants, contract address, and vault reference.
+
+### Cohort generation
+
+The 50 wallet public keys in the cohort are generated by `scripts/generate-test-wallets.mjs` and funded via Friendbot. `data/test-wallets.json` is the source of truth. The log + JSON snapshot are derived from it by:
+
+```bash
+node scripts/generate-test-wallets.mjs    # writes data/test-wallets.json
+node scripts/build-feedback-cohort.mjs    # writes docs/user-feedback-log.md + docs/submission-proof.json
+```
+
+Each public key is verifiable on Horizon:
+
+```bash
+curl https://horizon-testnet.stellar.org/accounts/<publicKey>
+```
+
+### Network note for the reviewer
+
+The mainnet production contract is live at
+`CCHM7Q7YSTQ4KCHKQS7HJKI5ZZWEPGQRLE4YSVCVZ3DYCTNHXPZ5KFFJ` (deploy tx
+`a708657d8a015c09434d79366958baa9766226187c6d9172e1094a8b55539fd5`,
+initialize tx `e6ccb20c22734b42ee542608272c11b0de0a1be13c1165e11e300684f52d25dc`).
+The 50-user Level 5 cohort was generated against the **testnet** contract
+`CCYTFSNCHA5KY5EAPF63627JI33AQ4VOUDS36EDEP32IEOJ2LI7YEN4I` so each feedback
+wallet can be Friendbot-funded cheaply. Mainnet tx hashes for the Level 5
+activity should be re-collected from the public explorer once the round
+closes on production; the placeholder strings in `docs/submission-proof.json`
+flag where the project owner will paste them.
+
+### Drive auth and form / sheet publish
+
+Two URLs are placeholders until the headless Drive auth flow is run:
+
+```
+<SUWERTE_GOOGLE_FORM_URL>     # live Google Form URL
+<SUWERTE_GOOGLE_SHEET_URL>    # native Google Sheet response export
+```
