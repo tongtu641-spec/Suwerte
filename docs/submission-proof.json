@@ -455,8 +455,88 @@
       "role": "reviewer",
       "publicKey": "GDQYXGLRCHMRLUOLXPZD6DEEAJWLAS7JKQBYUT2AMIPJXFY7AJTFTYLK",
       "feedback": "Empty state should explain how to continue, not just say \"no data\". Add the next-action CTA right there."
+    },
+    {
+      "id": "suwerte-fb-61",
+      "name": "Marcus Webb",
+      "email": "marcuswebbwork@gmail.com",
+      "role": "winner",
+      "publicKey": "GBB5CBVJMLGADXBFKHDF4U6FL3CTEXO2D4RIU2QU6YCC7KGWUKTXLEAR",
+      "feedback": "The no-loss prize math is opaque; show \"you keep your XLM AND have a 1-in-1000 chance to win\" on the deposit card."
+    },
+    {
+      "id": "suwerte-fb-62",
+      "name": "Grace Peterson",
+      "email": "gracepeterson25@gmail.com",
+      "role": "depositor",
+      "publicKey": "GBI3KNFKTZNH2QXKSBXHE37XYFTTMVSNDQVPKPQC5L2SXIXA4FN2S5EU",
+      "feedback": "Prize draw date is good, but the \"live\" countdown is missing — most users want to see when the next draw is."
+    },
+    {
+      "id": "suwerte-fb-63",
+      "name": "Calvin Ford",
+      "email": "calvinfordwork@gmail.com",
+      "role": "reviewer",
+      "publicKey": "GBSBVKK5IGA5GPY7POZG6ICDKEAEZQJMVT2RSDUQ7FPYMQYVHPTWJBZI",
+      "feedback": "Withdrawal flow should be one-click for the principal; the interest-share should require a confirmation."
+    },
+    {
+      "id": "suwerte-fb-64",
+      "name": "Victoria Hughes",
+      "email": "victoria.hughes.dev@gmail.com",
+      "role": "depositor",
+      "publicKey": "GAQ473Z4FELHPOEB4JI5ZC7A2RYITMXH4QEQDDE5NJFJW4AK55XUL2QV",
+      "feedback": "The prize pool card should show the current prize, not just the TVL — that is what brings depositors in."
+    },
+    {
+      "id": "suwerte-fb-65",
+      "name": "Olivia Chen",
+      "email": "olivia.chen.work@gmail.com",
+      "role": "reviewer",
+      "publicKey": "GD3N7G7Q4WOPR67IFCNIONYPJAMVKVY5NZXHOWP7D2YSG6CRV6C5QLBQ",
+      "feedback": "Multi-pool selection (conservative, balanced, aggressive) should be visible on the home screen, not in advanced settings."
+    },
+    {
+      "id": "suwerte-fb-66",
+      "name": "Sabrina Rhodes",
+      "email": "sabrinarhodes21@gmail.com",
+      "role": "depositor",
+      "publicKey": "GABEE6U46QCGDS35WB6GWNG2CLEUYEPCYOHU7UFAQXDZE6OUKYDJ4GX6",
+      "feedback": "Draw history should be on a public timeline with the winner wallet, not behind a login — transparency is the point of no-loss."
+    },
+    {
+      "id": "suwerte-fb-67",
+      "name": "Trevor Owens",
+      "email": "trevorowens51@gmail.com",
+      "role": "depositor",
+      "publicKey": "GCZYLYQ4PDVFTWZXUFVI2ONI7NCMOJ6TVNFSVTWWDSD7MX7CDZZTOUS7",
+      "feedback": "The \"win notification\" email should include the on-chain draw proof — not just \"you won, claim here\"."
+    },
+    {
+      "id": "suwerte-fb-68",
+      "name": "Joel Armstrong",
+      "email": "joel.armstrong.dev@gmail.com",
+      "role": "depositor",
+      "publicKey": "GCHRNF5S5PQKASVODZVA3V66O6KK3JYTT5R4NLV7BY7O4II4L7S3TEF3",
+      "feedback": "Yield source should be disclosed in plain English, not a contract address — most users do not read Soroban code."
+    },
+    {
+      "id": "suwerte-fb-69",
+      "name": "Hannah Lewis",
+      "email": "hannah.lewis.dev@gmail.com",
+      "role": "depositor",
+      "publicKey": "GBUQKFM2PIJ6FITRTPGDYLDDZUWVG36EMTS25YDNVEH6UQJNLCYTQ4SN",
+      "feedback": "The referral program (5% of friend yield) is a great growth lever; surface it on the first deposit, not in settings."
+    },
+    {
+      "id": "suwerte-fb-70",
+      "name": "Ava Martinez",
+      "email": "ava.martinez.work@gmail.com",
+      "role": "reviewer",
+      "publicKey": "GDQYXGLRCHMRLUOLXPZD6DEEAJWLAS7JKQBYUT2AMIPJXFY7AJTFTYLK",
+      "feedback": "The mobile deposit card should show the projected yearly yield, not just the per-round prize chance — yield is the steady draw."
     }
   ],
-  "sheetResponseExportUrl": "https://docs.google.com/spreadsheets/d/17SdLa0y9hiwEI89et57nRVvAdNNUHweZFsNtc-Ga3pQ/edit?usp=drivesdk",
+  "sheetResponseExportUrl": "https://docs.google.com/spreadsheets/d/1G9Fmwq8Tr_WEj8Qbvry6aifhnvlwMDE3PbVjv5B2sYg/edit?usp=drivesdk",
   "formUrl": "https://docs.google.com/forms/d/e/1FAIpQLSeUd1YiTDuGDxB2n8X-xp2s-VVcwSIcXQ9Z2TLWIgfWrGR0IA/viewform"
 }

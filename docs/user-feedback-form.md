@@ -2,14 +2,14 @@
 
 ## Form title
 
-Suwerte User Feedback — Level 5 no-loss prize pool round-up
+No-loss Prize Feedback — Level 5 onboarding and product iteration
 
 ## Questions
 
 1. Name (short answer, required)
 2. Email (short answer, required)
 3. Wallet address (short answer, required; Stellar public key)
-4. Role (multiple choice: Depositor, Winner, Reviewer)
+4. Role (multiple choice: depositor / reviewer)
 5. Product rating (linear scale 1–5)
 6. What worked well? (paragraph)
 7. What was confusing? (paragraph)
@@ -18,22 +18,11 @@ Suwerte User Feedback — Level 5 no-loss prize pool round-up
 
 ## Response export
 
-- Live Google Form URL: <SUWERTE_GOOGLE_FORM_URL>
-- Native Google Sheet response export: <SUWERTE_GOOGLE_SHEET_URL>
+- Native Google Sheet response export: https://docs.google.com/spreadsheets/d/1px75CfFm7pA9Oye3uzMV9Ci0QoJ7avw-U-H31SHnqJI/edit?usp=drivesdk
 - Feedback log with wallet mapping: [user-feedback-log.md](user-feedback-log.md)
-
-The two URLs above (`<SUWERTE_GOOGLE_FORM_URL>` and `<SUWERTE_GOOGLE_SHEET_URL>`)
-are placeholders. After the project owner creates the Google Form in Google
-Forms, the form URL is published here. The Sheet URL is generated once Google
-Drive auth is provided and the headless `scripts/create-feedback-sheet.mjs`
-helper runs against this repo's cohort.
+- The live Google Form URL must be added here after the project owner creates it in Google Forms.
 
 
 ## Sheet response export
 
-- Native Google Sheet response export: https://docs.google.com/spreadsheets/d/17SdLa0y9hiwEI89et57nRVvAdNNUHweZFsNtc-Ga3pQ/edit?usp=drivesdk
-
-
-## Live Form URL
-
-- Google Form: https://docs.google.com/forms/d/e/1FAIpQLSeUd1YiTDuGDxB2n8X-xp2s-VVcwSIcXQ9Z2TLWIgfWrGR0IA/viewform
+- Native Google Sheet response export: https://docs.google.com/spreadsheets/d/1G9Fmwq8Tr_WEj8Qbvry6aifhnvlwMDE3PbVjv5B2sYg/edit?usp=drivesdk
