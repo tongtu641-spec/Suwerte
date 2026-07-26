@@ -86,7 +86,7 @@ The full transcript sits in [`docs/user-feedback-log.md`](docs/user-feedback-log
 | [`docs/user-feedback-log.md`](docs/user-feedback-log.md) | 60-user feedback log with date column |
 | [`docs/user-feedback-form.md`](docs/user-feedback-form.md) | Google Form template definition |
 | [`docs/level5-feedback-iteration-summary.md`](docs/level5-feedback-iteration-summary.md) | Feedback-to-iteration map |
-| Google Sheet response export | https://docs.google.com/spreadsheets/d/1G9Fmwq8Tr_WEj8Qbvry6aifhnvlwMDE3PbVjv5B2sYg/edit?usp=drivesdk |
+| Google Sheet response export | https://docs.google.com/spreadsheets/d/17SdLa0y9hiwEI89et57nRVvAdNNUHweZFsNtc-Ga3pQ/edit?usp=drivesdk |
 
 ## Google Form vs Google Sheet response
 
@@ -96,8 +96,8 @@ check for this release.
 
 | Source | Rows | Count | Last verified |
 |---|---|---|---|
-| Google Form template | questions | 9 | 2026-06-30 |
-| Google Sheet response export | responses | 60 | 2026-06-30 |
+| [Google Form template](https://docs.google.com/forms/d/e/1FAIpQLSeUd1YiTDuGDxB2n8X-xp2s-VVcwSIcXQ9Z2TLWIgfWrGR0IA/viewform) | questions | 9 | 2026-06-30 |
+| [Google Sheet response export](https://docs.google.com/spreadsheets/d/17SdLa0y9hiwEI89et57nRVvAdNNUHweZFsNtc-Ga3pQ/edit?usp=drivesdk) | responses | 60 | 2026-06-30 |
 | Local feedback log | entries | 60 | 2026-06-30 |
 
 Parity reached: **60 / 60** (no drift between Form, Sheet, and repo log).
