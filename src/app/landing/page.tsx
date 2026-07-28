@@ -18,11 +18,14 @@ import Link from 'next/link';
 import { useEffect, useState } from 'react';
 import { apiGet } from '@/lib/api';
 import { formatAmount } from '@/lib/format';
-import { NETWORK_LABEL } from '@/lib/stellar-config';
+import { APP_NETWORK, NETWORK_LABEL } from '@/lib/stellar-config';
 import type { Stats } from '@/lib/types';
 
-const CONTRACT_ID = 'CCHM7Q7YSTQ4KCHKQS7HJKI5ZZWEPGQRLE4YSVCVZ3DYCTNHXPZ5KFFJ';
-const CONTRACT_EXPLORER_URL = `https://stellar.expert/explorer/public/contract/${CONTRACT_ID}`;
+const CONTRACT_ID =
+  APP_NETWORK === 'public'
+    ? 'CCHM7Q7YSTQ4KCHKQS7HJKI5ZZWEPGQRLE4YSVCVZ3DYCTNHXPZ5KFFJ'
+    : 'CCYTFSNCHA5KY5EAPF63627JI33AQ4VOUDS36EDEP32IEOJ2LI7YEN4I';
+const CONTRACT_EXPLORER_URL = `https://stellar.expert/explorer/${APP_NETWORK === 'public' ? 'public' : 'testnet'}/contract/${CONTRACT_ID}`;
 const X_URL = 'https://x.com/SuwerteXLM';
 
 export default function LandingPage() {
