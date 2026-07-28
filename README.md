@@ -10,6 +10,8 @@ the suspense.
 
 **Live on Stellar mainnet → https://suwerte-ten.vercel.app** · [Contract on Stellar Expert](https://stellar.expert/explorer/public/contract/CCHM7Q7YSTQ4KCHKQS7HJKI5ZZWEPGQRLE4YSVCVZ3DYCTNHXPZ5KFFJ) · [Follow @SuuerteXLM](https://x.com/SuuerteXLM)
 
+**Marketing landing page → [/landing](https://suwerte-ten.vercel.app/landing)**
+
 ![Landing](screen-shot/01-landing.jpg)
 
 ---
