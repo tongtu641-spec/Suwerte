@@ -247,6 +247,110 @@ function HowItWorks() {
   );
 }
 
+function FlowNode({
+  icon: Icon,
+  accent,
+  title,
+  caption,
+  highlight,
+}: {
+  icon: typeof Wallet;
+  accent: 'mint' | 'gold';
+  title: string;
+  caption: string;
+  highlight?: boolean;
+}) {
+  return (
+    <div className="flex flex-col items-center text-center">
+      <div
+        className={`flex items-center justify-center rounded-full bg-panel-2 ring-2 ${
+          accent === 'gold' ? 'ring-gold' : 'ring-mint'
+        } ${highlight ? 'h-20 w-20' : 'h-16 w-16'}`}
+      >
+        <Icon
+          className={`${highlight ? 'h-8 w-8' : 'h-6 w-6'} ${accent === 'gold' ? 'text-gold' : 'text-mint'}`}
+        />
+      </div>
+      <p className="mt-3 text-sm font-medium text-ink-text">{title}</p>
+      <p className="mt-1 max-w-[10rem] text-xs text-muted">{caption}</p>
+    </div>
+  );
+}
+
+function FlowConnector({
+  accent,
+  label,
+  reduceMotion,
+}: {
+  accent: 'mint' | 'gold';
+  label: string;
+  reduceMotion: boolean | null;
+}) {
+  const color = accent === 'gold' ? 'text-gold' : 'text-mint';
+
+  return (
+    <div className="flex flex-1 flex-col items-center justify-center gap-2 py-2 sm:py-0">
+      <motion.div
+        className={color}
+        animate={
+          reduceMotion
+            ? undefined
+            : accent === 'mint'
+              ? { opacity: [0.4, 1, 0.4] }
+              : { opacity: [0.3, 1, 0.3] }
+        }
+        transition={
+          reduceMotion
+            ? undefined
+            : {
+                repeat: Infinity,
+                duration: accent === 'mint' ? 2.6 : 1.6,
+                ease: 'easeInOut',
+                repeatDelay: accent === 'mint' ? 0 : 1.4,
+              }
+        }
+      >
+        <ArrowRight className="h-5 w-5 rotate-90 sm:rotate-0" />
+      </motion.div>
+      <p className="max-w-[9rem] text-center text-[11px] text-muted">{label}</p>
+    </div>
+  );
+}
+
+function FlowMotif() {
+  const reduceMotion = useReducedMotion();
+
+  return (
+    <div className="flex flex-col items-stretch gap-2 sm:flex-row sm:items-start sm:justify-between">
+      <FlowNode
+        icon={Wallet}
+        accent="mint"
+        title="Depositors"
+        caption="principal, withdrawable any time"
+      />
+      <FlowConnector accent="mint" label="deposit & withdraw" reduceMotion={reduceMotion} />
+      <FlowNode
+        icon={ShieldCheck}
+        accent="gold"
+        title="suwerte-pool contract"
+        caption="principal and prize tracked separately"
+        highlight
+      />
+      <FlowConnector
+        accent="gold"
+        label="prize slice, one winner per draw"
+        reduceMotion={reduceMotion}
+      />
+      <FlowNode
+        icon={Trophy}
+        accent="gold"
+        title="One winner"
+        caption="only the prize slice moves"
+      />
+    </div>
+  );
+}
+
 function Ecosystem() {
   const actors = [
     {
@@ -283,48 +387,36 @@ function Ecosystem() {
   ];
 
   return (
-    <section id="ecosystem" className="scroll-mt-24 py-12">
-      <div className="relative overflow-hidden">
-        <img
-          src="/images/landing/gold-bokeh.jpg"
-          alt=""
-          loading="lazy"
-          width={1600}
-          height={1067}
-          className="absolute inset-0 h-full w-full object-cover"
-        />
-        <div className="absolute inset-0 bg-gradient-to-b from-ink/70 via-ink/85 to-ink" />
-        <div className="relative mx-auto max-w-6xl px-4 py-16 sm:px-6 sm:py-24">
-          <span className="chip text-mint">
-            <Globe className="h-3.5 w-3.5" /> Ecosystem
-          </span>
-          <h2 className="mt-4 text-2xl sm:text-3xl">Who actually moves the pool</h2>
-          <p className="mt-2 max-w-2xl text-muted">
-            Suwerte runs on one contract — no token stack bolted on beside it. These are the parties
-            that actually touch a round; nobody here is invented for the pitch.
-          </p>
-        </div>
+    <section id="ecosystem" className="mx-auto max-w-6xl scroll-mt-24 px-4 py-12 sm:px-6">
+      <span className="chip text-mint">
+        <Globe className="h-3.5 w-3.5" /> Ecosystem
+      </span>
+      <h2 className="mt-4 text-2xl sm:text-3xl">Who actually moves the pool</h2>
+      <p className="mt-2 max-w-2xl text-muted">
+        Suwerte runs on one contract — no token stack bolted on beside it. These are the parties
+        that actually touch a round; nobody here is invented for the pitch.
+      </p>
+      <div className="card mt-8 p-6 sm:p-10">
+        <FlowMotif />
       </div>
-      <div className="mx-auto max-w-6xl px-4 pt-10 sm:px-6">
-        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-          {actors.map((a) => (
-            <div key={a.title} className={`card p-5 ${a.highlight ? 'border-gold/40' : ''}`}>
-              <a.icon className={`h-6 w-6 ${a.highlight ? 'text-gold' : 'text-mint'}`} />
-              <h3 className="mt-4 text-lg">{a.title}</h3>
-              <p className="mt-1.5 text-sm text-muted">{a.body}</p>
-              {a.highlight && (
-                <a
-                  href={CONTRACT_EXPLORER_URL}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="mt-3 inline-flex items-center gap-1.5 text-sm text-mint hover:underline"
-                >
-                  View on-chain <ArrowUpRight className="h-3.5 w-3.5" />
-                </a>
-              )}
-            </div>
-          ))}
-        </div>
+      <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+        {actors.map((a) => (
+          <div key={a.title} className={`card p-5 ${a.highlight ? 'border-gold/40' : ''}`}>
+            <a.icon className={`h-6 w-6 ${a.highlight ? 'text-gold' : 'text-mint'}`} />
+            <h3 className="mt-4 text-lg">{a.title}</h3>
+            <p className="mt-1.5 text-sm text-muted">{a.body}</p>
+            {a.highlight && (
+              <a
+                href={CONTRACT_EXPLORER_URL}
+                target="_blank"
+                rel="noreferrer"
+                className="mt-3 inline-flex items-center gap-1.5 text-sm text-mint hover:underline"
+              >
+                View on-chain <ArrowUpRight className="h-3.5 w-3.5" />
+              </a>
+            )}
+          </div>
+        ))}
       </div>
     </section>
   );
@@ -439,7 +531,7 @@ function Roadmap() {
         pointed — we&apos;re skipping dates, since a hackathon timeline is mostly a guess anyway.
       </p>
 
-      <div className="mt-10 grid items-center gap-6 md:grid-cols-2">
+      <div className="mt-10 grid gap-6 md:grid-cols-2">
         <div className="card p-6">
           <h3 className="flex items-center gap-2 text-lg">
             <CheckCircle2 className="h-5 w-5 text-mint" /> Live now
@@ -453,34 +545,7 @@ function Roadmap() {
             ))}
           </ul>
         </div>
-        <div className="relative aspect-[4/3] overflow-hidden rounded-[var(--radius-xl)] ring-1 ring-line">
-          <img
-            src="/images/landing/manila-lanterns.jpg"
-            alt="Red lanterns strung along an alley in Manila"
-            loading="lazy"
-            width={1600}
-            height={2400}
-            className="h-full w-full object-cover"
-          />
-          <div className="absolute inset-0 bg-gradient-to-t from-ink/75 via-ink/10 to-transparent" />
-          <div className="absolute inset-0 bg-gold/10 mix-blend-overlay" />
-        </div>
-      </div>
-
-      <div className="mt-6 grid items-center gap-6 md:grid-cols-2">
-        <div className="relative order-2 aspect-[4/3] overflow-hidden rounded-[var(--radius-xl)] ring-1 ring-line md:order-1">
-          <img
-            src="/images/landing/bacolod-night-street.jpg"
-            alt="A busy night street in Bacolod City, Philippines"
-            loading="lazy"
-            width={1600}
-            height={2133}
-            className="h-full w-full object-cover"
-          />
-          <div className="absolute inset-0 bg-gradient-to-t from-ink/75 via-ink/10 to-transparent" />
-          <div className="absolute inset-0 bg-mint/10 mix-blend-overlay" />
-        </div>
-        <div className="card order-1 p-6 md:order-2">
+        <div className="card p-6">
           <h3 className="flex items-center gap-2 text-lg">
             <Compass className="h-5 w-5 text-gold" /> What&apos;s next
           </h3>
