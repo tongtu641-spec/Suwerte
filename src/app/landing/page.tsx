@@ -45,8 +45,7 @@ export default function LandingPage() {
 
   return (
     <div>
-      <Hero />
-      <StatsStrip stats={stats} />
+      <Hero stats={stats} />
       <HowItWorks />
       <Ecosystem />
       <TechnicalWalkthrough />
@@ -57,54 +56,88 @@ export default function LandingPage() {
   );
 }
 
-function Hero() {
+function Hero({ stats }: { stats: Stats | null }) {
+  const tiles = [
+    { icon: Users, label: 'Unique wallets', value: stats ? String(stats.uniqueWallets) : null },
+    {
+      icon: Coins,
+      label: 'XLM pooled all-time',
+      value: stats ? formatAmount(stats.totalDepositedXlm) : null,
+    },
+    {
+      icon: Trophy,
+      label: 'XLM paid in prizes',
+      value: stats ? formatAmount(stats.prizesPaidXlm) : null,
+    },
+    { icon: Sparkles, label: 'Distinct winners', value: stats ? String(stats.winners) : null },
+  ];
+
   return (
     <section
       id="intro"
       className="mx-auto max-w-6xl scroll-mt-24 px-4 pt-14 pb-10 sm:px-6 sm:pt-20"
     >
-      <div className="grid items-center gap-10 lg:grid-cols-[1.05fr_0.95fr]">
-        <div>
-          <span className="chip text-gold">
-            <Sparkles className="h-3.5 w-3.5" /> Live on Stellar {NETWORK_LABEL}
-          </span>
-          <h1 className="mt-5 text-4xl leading-[1.05] sm:text-6xl">
-            Your principal
-            <br />
-            <span className="text-mint">loops back.</span>
-            <br />
-            Only the <span className="text-gold">prize</span> moves.
-          </h1>
-          <p className="mt-5 max-w-xl text-lg text-muted">
-            Suwerte is a no-loss prize pool on Stellar. Deposit XLM, hold raffle tickets, and one
-            wallet wins the sponsored prize each round. Your deposit is never at risk — it&apos;s
-            withdrawable on-chain any time.
-          </p>
-          <div className="mt-8 flex flex-wrap items-center gap-3">
-            <Link href="/play" className="btn btn-gold text-base px-6 py-3">
-              Deposit &amp; enter <ArrowRight className="h-4 w-4" />
-            </Link>
-            <a
-              href={CONTRACT_EXPLORER_URL}
-              target="_blank"
-              rel="noreferrer"
-              className="btn btn-ghost text-base px-6 py-3"
-            >
-              View contract on-chain <ArrowUpRight className="h-4 w-4" />
-            </a>
-          </div>
-          <div className="mt-6 flex flex-wrap gap-x-6 gap-y-2 text-sm text-muted">
-            <span className="inline-flex items-center gap-1.5">
-              <ShieldCheck className="h-4 w-4 text-mint" /> Principal never at risk
-            </span>
-            <span className="inline-flex items-center gap-1.5">
-              <Lock className="h-4 w-4 text-mint" /> Verifiable on-chain
-            </span>
-          </div>
-        </div>
+      <div className="mx-auto max-w-3xl text-center">
+        <span className="chip text-gold">
+          <Sparkles className="h-3.5 w-3.5" /> Live on Stellar {NETWORK_LABEL}
+        </span>
 
         <LoopMotif />
+
+        <h1 className="mt-8 text-4xl leading-[1.05] sm:text-6xl">
+          Your principal
+          <br />
+          <span className="text-mint">loops back.</span>
+          <br />
+          Only the <span className="text-gold">prize</span> moves.
+        </h1>
+        <p className="mx-auto mt-5 max-w-xl text-lg text-muted">
+          Suwerte is a no-loss prize pool on Stellar. Deposit XLM, hold raffle tickets, and one
+          wallet wins the sponsored prize each round. Your deposit is never at risk — it&apos;s
+          withdrawable on-chain any time.
+        </p>
+        <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
+          <Link href="/play" className="btn btn-gold text-base px-6 py-3">
+            Deposit &amp; enter <ArrowRight className="h-4 w-4" />
+          </Link>
+          <a
+            href={CONTRACT_EXPLORER_URL}
+            target="_blank"
+            rel="noreferrer"
+            className="btn btn-ghost text-base px-6 py-3"
+          >
+            View contract on-chain <ArrowUpRight className="h-4 w-4" />
+          </a>
+        </div>
+        <div className="mt-6 flex flex-wrap justify-center gap-x-6 gap-y-2 text-sm text-muted">
+          <span className="inline-flex items-center gap-1.5">
+            <ShieldCheck className="h-4 w-4 text-mint" /> Principal never at risk
+          </span>
+          <span className="inline-flex items-center gap-1.5">
+            <Lock className="h-4 w-4 text-mint" /> Verifiable on-chain
+          </span>
+        </div>
       </div>
+
+      <div className="card mx-auto mt-10 grid max-w-4xl grid-cols-2 divide-x divide-y divide-line sm:grid-cols-4 sm:divide-y-0">
+        {tiles.map((t) => (
+          <div key={t.label} className="flex flex-col items-center gap-2 p-5 text-center">
+            <t.icon className="h-5 w-5 text-gold" />
+            {t.value === null ? (
+              <div className="skeleton h-8 w-16" />
+            ) : (
+              <p className="text-3xl font-semibold text-ink-text">{t.value}</p>
+            )}
+            <p className="text-sm text-muted">{t.label}</p>
+          </div>
+        ))}
+      </div>
+      <p className="mt-4 text-center text-xs text-muted">
+        Real numbers from real wallets — no seed data.{' '}
+        <Link href="/stats" className="text-mint hover:underline">
+          Full stats
+        </Link>
+      </p>
     </section>
   );
 }
@@ -113,7 +146,7 @@ function LoopMotif() {
   const reduceMotion = useReducedMotion();
 
   return (
-    <div className="card relative flex aspect-square max-w-sm items-center justify-center overflow-hidden justify-self-center p-8 sm:p-10">
+    <div className="card relative mx-auto mt-8 flex aspect-square max-w-md items-center justify-center overflow-hidden p-8 sm:p-10">
       <div className="pointer-events-none absolute -right-16 -top-16 h-48 w-48 rounded-full bg-gold/15 blur-3xl" />
       <div className="pointer-events-none absolute -left-10 bottom-0 h-40 w-40 rounded-full bg-mint/10 blur-3xl" />
 
@@ -161,47 +194,6 @@ function LoopMotif() {
         </span>
       </div>
     </div>
-  );
-}
-
-function StatsStrip({ stats }: { stats: Stats | null }) {
-  const tiles = [
-    { icon: Users, label: 'Unique wallets', value: stats ? String(stats.uniqueWallets) : null },
-    {
-      icon: Coins,
-      label: 'XLM pooled all-time',
-      value: stats ? formatAmount(stats.totalDepositedXlm) : null,
-    },
-    {
-      icon: Trophy,
-      label: 'XLM paid in prizes',
-      value: stats ? formatAmount(stats.prizesPaidXlm) : null,
-    },
-    { icon: Sparkles, label: 'Distinct winners', value: stats ? String(stats.winners) : null },
-  ];
-
-  return (
-    <section className="mx-auto max-w-6xl px-4 py-10 sm:px-6">
-      <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-        {tiles.map((t) => (
-          <div key={t.label} className="card p-5">
-            <t.icon className="h-5 w-5 text-gold" />
-            {t.value === null ? (
-              <div className="skeleton mt-4 h-8 w-16" />
-            ) : (
-              <p className="mt-4 text-3xl font-semibold text-ink-text">{t.value}</p>
-            )}
-            <p className="mt-1 text-sm text-muted">{t.label}</p>
-          </div>
-        ))}
-      </div>
-      <p className="mt-4 text-center text-xs text-muted">
-        Real numbers from real wallets — no seed data.{' '}
-        <Link href="/stats" className="text-mint hover:underline">
-          Full stats
-        </Link>
-      </p>
-    </section>
   );
 }
 
@@ -399,24 +391,32 @@ function Ecosystem() {
       <div className="card mt-8 p-6 sm:p-10">
         <FlowMotif />
       </div>
-      <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-        {actors.map((a) => (
-          <div key={a.title} className={`card p-5 ${a.highlight ? 'border-gold/40' : ''}`}>
-            <a.icon className={`h-6 w-6 ${a.highlight ? 'text-gold' : 'text-mint'}`} />
-            <h3 className="mt-4 text-lg">{a.title}</h3>
-            <p className="mt-1.5 text-sm text-muted">{a.body}</p>
-            {a.highlight && (
-              <a
-                href={CONTRACT_EXPLORER_URL}
-                target="_blank"
-                rel="noreferrer"
-                className="mt-3 inline-flex items-center gap-1.5 text-sm text-mint hover:underline"
-              >
-                View on-chain <ArrowUpRight className="h-3.5 w-3.5" />
-              </a>
-            )}
-          </div>
-        ))}
+      <div className="mt-8 flex flex-wrap justify-center gap-2">
+        {actors.map((a) =>
+          a.highlight ? (
+            <a
+              key={a.title}
+              href={CONTRACT_EXPLORER_URL}
+              target="_blank"
+              rel="noreferrer"
+              title={a.body}
+              className="inline-flex items-center gap-2 rounded-full border border-gold/40 px-3 py-1.5 text-sm text-ink-text hover:bg-white/[0.04]"
+            >
+              <a.icon className="h-3.5 w-3.5 text-gold" />
+              {a.title}
+              <ArrowUpRight className="h-3.5 w-3.5" />
+            </a>
+          ) : (
+            <div
+              key={a.title}
+              title={a.body}
+              className="inline-flex items-center gap-2 rounded-full border border-line px-3 py-1.5 text-sm text-ink-text"
+            >
+              <a.icon className="h-3.5 w-3.5 text-mint" />
+              {a.title}
+            </div>
+          ),
+        )}
       </div>
     </section>
   );
@@ -531,35 +531,39 @@ function Roadmap() {
         pointed — we&apos;re skipping dates, since a hackathon timeline is mostly a guess anyway.
       </p>
 
-      <div className="mt-10 grid gap-6 md:grid-cols-2">
-        <div className="card p-6">
-          <h3 className="flex items-center gap-2 text-lg">
-            <CheckCircle2 className="h-5 w-5 text-mint" /> Live now
-          </h3>
-          <ul className="mt-4 space-y-3">
-            {liveNow.map((item) => (
-              <li key={item} className="flex gap-2 text-sm text-muted">
-                <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-mint" />
-                {item}
-              </li>
-            ))}
-          </ul>
-        </div>
-        <div className="card p-6">
-          <h3 className="flex items-center gap-2 text-lg">
-            <Compass className="h-5 w-5 text-gold" /> What&apos;s next
-          </h3>
-          <ul className="mt-4 space-y-3">
-            {whatsNext.map((item) => (
-              <li key={item} className="flex gap-2 text-sm text-muted">
-                <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-gold" />
-                {item}
-              </li>
-            ))}
-          </ul>
-          <p className="mt-4 text-xs text-muted">Could move. Could slip. That&apos;s a roadmap.</p>
+      <div className="relative mt-10">
+        <div
+          aria-hidden
+          className="pointer-events-none absolute inset-x-0 top-0 h-1.5 opacity-50"
+          style={{
+            backgroundImage:
+              'repeating-linear-gradient(90deg, var(--color-line) 0 6px, transparent 6px 14px)',
+          }}
+        />
+        <div className="flex gap-3 overflow-x-auto pt-5 pb-4 snap-x snap-mandatory [mask-image:linear-gradient(to_right,transparent,black_24px,black_calc(100%-24px),transparent)]">
+          {liveNow.map((item) => (
+            <div key={item} className="card w-[260px] shrink-0 snap-start border-mint/40 p-5">
+              <CheckCircle2 className="h-5 w-5 text-mint" />
+              <p className="mt-3 text-sm text-muted">{item}</p>
+            </div>
+          ))}
+          <div className="card flex min-w-[72px] shrink-0 snap-start flex-col items-center justify-center gap-1 p-5 text-center text-xs font-semibold tracking-wide text-muted">
+            <span className="text-mint">LIVE</span>
+            <span>▸</span>
+            <span className="text-gold">NEXT</span>
+          </div>
+          {whatsNext.map((item) => (
+            <div
+              key={item}
+              className="card w-[260px] shrink-0 snap-start border-dashed border-gold/40 p-5 opacity-80"
+            >
+              <Compass className="h-5 w-5 text-gold" />
+              <p className="mt-3 text-sm text-muted">{item}</p>
+            </div>
+          ))}
         </div>
       </div>
+      <p className="mt-2 text-xs text-muted">Could move. Could slip. That&apos;s a roadmap.</p>
     </section>
   );
 }
