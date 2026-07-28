@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import { Wordmark } from '@/components/Logo';
-import { NETWORK_LABEL } from '@/lib/stellar-config';
+import { APP_NETWORK, NETWORK_LABEL } from '@/lib/stellar-config';
 
 export function SiteFooter() {
   return (
@@ -21,7 +21,7 @@ export function SiteFooter() {
             Live stats
           </Link>
           <a
-            href="https://stellar.expert/explorer/testnet"
+            href={`https://stellar.expert/explorer/${APP_NETWORK === 'public' ? 'public' : 'testnet'}`}
             target="_blank"
             rel="noreferrer"
             className="text-muted hover:text-ink-text"
@@ -32,7 +32,9 @@ export function SiteFooter() {
       </div>
       <div className="border-t border-line">
         <div className="mx-auto flex max-w-6xl flex-col items-center justify-between gap-2 px-4 py-4 text-xs text-muted sm:flex-row sm:px-6">
-          <span>Suwerte runs on Stellar {NETWORK_LABEL}. Built for the Stellar APAC Hackathon.</span>
+          <span>
+            Suwerte runs on Stellar {NETWORK_LABEL}. Built for the Stellar APAC Hackathon.
+          </span>
           <span>Principal-safe · Provably fair · Open draws</span>
         </div>
       </div>

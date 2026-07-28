@@ -2,8 +2,8 @@
 
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { Wordmark } from '@/components/Logo';
 import { ConnectButton } from '@/components/ConnectButton';
+import { Wordmark } from '@/components/Logo';
 import { NETWORK_LABEL } from '@/lib/stellar-config';
 
 const NAV = [
@@ -14,6 +14,22 @@ const NAV = [
 
 export function SiteHeader() {
   const pathname = usePathname();
+
+  if (pathname === '/landing') {
+    return (
+      <header className="sticky top-0 z-30 border-b border-line bg-ink/80 backdrop-blur-md">
+        <div className="mx-auto flex h-16 max-w-6xl items-center justify-between px-4 sm:px-6">
+          <Link href="/landing" className="shrink-0">
+            <Wordmark />
+          </Link>
+          <Link href="/" className="btn btn-gold px-4 py-2 text-sm">
+            Launch app
+          </Link>
+        </div>
+      </header>
+    );
+  }
+
   return (
     <header className="sticky top-0 z-30 border-b border-line bg-ink/80 backdrop-blur-md">
       <div className="mx-auto flex h-16 max-w-6xl items-center justify-between px-4 sm:px-6">
