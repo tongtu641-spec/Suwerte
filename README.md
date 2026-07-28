@@ -8,9 +8,9 @@ sponsored prize — and **everyone else keeps every stroop of their principal**,
 on-chain at any time. The only thing you can win is the prize; the only thing you can lose is
 the suspense.
 
-**Live on Stellar mainnet → https://suwerte-ten.vercel.app** · [Contract on Stellar Expert](https://stellar.expert/explorer/public/contract/CCHM7Q7YSTQ4KCHKQS7HJKI5ZZWEPGQRLE4YSVCVZ3DYCTNHXPZ5KFFJ) · [Follow @SuuerteXLM](https://x.com/SuuerteXLM)
+**Live on Stellar mainnet → https://suwerte.vercel.app** · [Contract on Stellar Expert](https://stellar.expert/explorer/public/contract/CCHM7Q7YSTQ4KCHKQS7HJKI5ZZWEPGQRLE4YSVCVZ3DYCTNHXPZ5KFFJ) · [Follow @SuwerteXLM](https://x.com/SuwerteXLM)
 
-**Marketing landing page → [/landing](https://suwerte-ten.vercel.app/landing)**
+**Marketing landing page → [/landing](https://suwerte.vercel.app/landing)**
 
 ![Landing](screen-shot/01-landing.jpg)
 
@@ -22,7 +22,7 @@ the suspense.
 
 - [x] **Public GitHub repository** — link to the public repo
 - [x] **Minimum 20+ meaningful commits** — see commit history on `main`
-- [x] **Live deployed application** — https://suuerte-ten.vercel.app
+- [x] **Live deployed application** — https://suwerte.vercel.app
 - [x] **PPT/Pitch deck link** — [View Pitch Deck](https://drive.google.com/file/d/1HL67lJrobOSaKGFgwRURV1GliHeQO_ha/view?usp=drive_link)
 - [x] **Demo video link** — [Watch Demo](https://drive.google.com/file/d/1Ii38zfrGYpT0spTIBEsvLN5DNA4riAiE/view?usp=drive_link)
 
@@ -197,7 +197,7 @@ Real interaction counts from the `sessions`, `deposits` and `rounds` tables — 
 
 | Wallets | Logins | Rounds | Completed | Deposits | Prize paid (XLM) | Winners |
 |---:|---:|---:|---:|---:|---:|---:|
-| live — see [suwerte-ten.vercel.app/stats](https://suuerte-ten.vercel.app/stats) and `GET /api/stats` | | | | | | |
+| live — see [suwerte.vercel.app/stats](https://suwerte.vercel.app/stats) and `GET /api/stats` | | | | | | |
 
 Mainnet launched fresh — counts come from the live `/api/stats` endpoint, no demo data, no seeded rows.
 
@@ -272,7 +272,7 @@ PRIZE_RATE_BPS                 # % of pool added to the prize (default 500 = 5%)
 ```bash
 pnpm test                                          # unit: fairness, amounts, http
 ( cd contracts && cargo +1.89.0 test )             # 12 contract tests (incl. no-loss)
-PLAYWRIGHT_BASE_URL=https://suwerte-ten.vercel.app \
+PLAYWRIGHT_BASE_URL=https://suwerte.vercel.app \
   pnpm exec playwright test                        # on-chain e2e against prod
 ```
 
@@ -281,7 +281,7 @@ drives connect → deposit on the live deployment, producing a real on-chain tra
 
 ---
 
-**Links**: [Live app](https://suwerte-ten.vercel.app) · [Contract on Stellar Expert](https://stellar.expert/explorer/public/contract/CCHM7Q7YSTQ4KCHKQS7HJKI5ZZWEPGQRLE4YSVCVZ3DYCTNHXPZ5KFFJ) · [X / Twitter](https://x.com/SuwerteXLM)
+**Links**: [Live app](https://suwerte.vercel.app) · [Contract on Stellar Expert](https://stellar.expert/explorer/public/contract/CCHM7Q7YSTQ4KCHKQS7HJKI5ZZWEPGQRLE4YSVCVZ3DYCTNHXPZ5KFFJ) · [X / Twitter](https://x.com/SuwerteXLM)
 
 Built for the Stellar APAC Hackathon · Track: Savings & DeFi.
 
