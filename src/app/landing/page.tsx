@@ -216,7 +216,7 @@ function HowItWorks() {
     {
       icon: Dice5,
       title: 'Open draw',
-      body: 'A committed seed is revealed; the winner is computed in the open.',
+      body: "The contract's on-chain PRNG picks the winner live — anyone can watch it happen and check the math after.",
     },
     {
       icon: Trophy,
@@ -228,7 +228,9 @@ function HowItWorks() {
   return (
     <section className="mx-auto max-w-6xl px-4 py-12 sm:px-6">
       <h2 className="text-2xl sm:text-3xl">The loop, in four steps</h2>
-      <p className="mt-2 text-muted">No lock-ups. No losses. Only the prize slice moves.</p>
+      <p className="mt-2 text-muted">
+        Nothing gets locked up, nothing gets lost — the only thing that moves is the prize.
+      </p>
       <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
         {steps.map((s, i) => (
           <div key={s.title} className="card p-5">
@@ -281,33 +283,48 @@ function Ecosystem() {
   ];
 
   return (
-    <section id="ecosystem" className="mx-auto max-w-6xl scroll-mt-24 px-4 py-12 sm:px-6">
-      <span className="chip text-mint">
-        <Globe className="h-3.5 w-3.5" /> Ecosystem
-      </span>
-      <h2 className="mt-4 text-2xl sm:text-3xl">Who actually moves the pool</h2>
-      <p className="mt-2 max-w-2xl text-muted">
-        Suwerte is one contract, not a token stack. These are the real actors that make a round run
-        — no invented partners, no integrations that don&apos;t exist.
-      </p>
-      <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-        {actors.map((a) => (
-          <div key={a.title} className={`card p-5 ${a.highlight ? 'border-gold/40' : ''}`}>
-            <a.icon className={`h-6 w-6 ${a.highlight ? 'text-gold' : 'text-mint'}`} />
-            <h3 className="mt-4 text-lg">{a.title}</h3>
-            <p className="mt-1.5 text-sm text-muted">{a.body}</p>
-            {a.highlight && (
-              <a
-                href={CONTRACT_EXPLORER_URL}
-                target="_blank"
-                rel="noreferrer"
-                className="mt-3 inline-flex items-center gap-1.5 text-sm text-mint hover:underline"
-              >
-                View on-chain <ArrowUpRight className="h-3.5 w-3.5" />
-              </a>
-            )}
-          </div>
-        ))}
+    <section id="ecosystem" className="scroll-mt-24 py-12">
+      <div className="relative overflow-hidden">
+        <img
+          src="/images/landing/gold-bokeh.jpg"
+          alt=""
+          loading="lazy"
+          width={1600}
+          height={1067}
+          className="absolute inset-0 h-full w-full object-cover"
+        />
+        <div className="absolute inset-0 bg-gradient-to-b from-ink/70 via-ink/85 to-ink" />
+        <div className="relative mx-auto max-w-6xl px-4 py-16 sm:px-6 sm:py-24">
+          <span className="chip text-mint">
+            <Globe className="h-3.5 w-3.5" /> Ecosystem
+          </span>
+          <h2 className="mt-4 text-2xl sm:text-3xl">Who actually moves the pool</h2>
+          <p className="mt-2 max-w-2xl text-muted">
+            Suwerte runs on one contract — no token stack bolted on beside it. These are the parties
+            that actually touch a round; nobody here is invented for the pitch.
+          </p>
+        </div>
+      </div>
+      <div className="mx-auto max-w-6xl px-4 pt-10 sm:px-6">
+        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+          {actors.map((a) => (
+            <div key={a.title} className={`card p-5 ${a.highlight ? 'border-gold/40' : ''}`}>
+              <a.icon className={`h-6 w-6 ${a.highlight ? 'text-gold' : 'text-mint'}`} />
+              <h3 className="mt-4 text-lg">{a.title}</h3>
+              <p className="mt-1.5 text-sm text-muted">{a.body}</p>
+              {a.highlight && (
+                <a
+                  href={CONTRACT_EXPLORER_URL}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="mt-3 inline-flex items-center gap-1.5 text-sm text-mint hover:underline"
+                >
+                  View on-chain <ArrowUpRight className="h-3.5 w-3.5" />
+                </a>
+              )}
+            </div>
+          ))}
+        </div>
       </div>
     </section>
   );
@@ -416,12 +433,13 @@ function Roadmap() {
       <span className="chip text-mint">
         <Compass className="h-3.5 w-3.5" /> Roadmap
       </span>
-      <h2 className="mt-4 text-2xl sm:text-3xl">Direction, not a promise</h2>
+      <h2 className="mt-4 text-2xl sm:text-3xl">What&apos;s shipped, what&apos;s still ahead</h2>
       <p className="mt-2 max-w-2xl text-muted">
-        What&apos;s live today, and where the project is headed — in plain terms, no dates, no
-        version numbers, no commitments.
+        Live now is already running on-chain. What&apos;s next is the honest direction we&apos;re
+        pointed — we&apos;re skipping dates, since a hackathon timeline is mostly a guess anyway.
       </p>
-      <div className="mt-8 grid gap-6 md:grid-cols-2">
+
+      <div className="mt-10 grid items-center gap-6 md:grid-cols-2">
         <div className="card p-6">
           <h3 className="flex items-center gap-2 text-lg">
             <CheckCircle2 className="h-5 w-5 text-mint" /> Live now
@@ -435,7 +453,34 @@ function Roadmap() {
             ))}
           </ul>
         </div>
-        <div className="card p-6">
+        <div className="relative aspect-[4/3] overflow-hidden rounded-[var(--radius-xl)] ring-1 ring-line">
+          <img
+            src="/images/landing/manila-lanterns.jpg"
+            alt="Red lanterns strung along an alley in Manila"
+            loading="lazy"
+            width={1600}
+            height={2400}
+            className="h-full w-full object-cover"
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-ink/75 via-ink/10 to-transparent" />
+          <div className="absolute inset-0 bg-gold/10 mix-blend-overlay" />
+        </div>
+      </div>
+
+      <div className="mt-6 grid items-center gap-6 md:grid-cols-2">
+        <div className="relative order-2 aspect-[4/3] overflow-hidden rounded-[var(--radius-xl)] ring-1 ring-line md:order-1">
+          <img
+            src="/images/landing/bacolod-night-street.jpg"
+            alt="A busy night street in Bacolod City, Philippines"
+            loading="lazy"
+            width={1600}
+            height={2133}
+            className="h-full w-full object-cover"
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-ink/75 via-ink/10 to-transparent" />
+          <div className="absolute inset-0 bg-mint/10 mix-blend-overlay" />
+        </div>
+        <div className="card order-1 p-6 md:order-2">
           <h3 className="flex items-center gap-2 text-lg">
             <Compass className="h-5 w-5 text-gold" /> What&apos;s next
           </h3>
@@ -447,7 +492,7 @@ function Roadmap() {
               </li>
             ))}
           </ul>
-          <p className="mt-4 text-xs text-muted">Directional intent, not a commitment.</p>
+          <p className="mt-4 text-xs text-muted">Could move. Could slip. That&apos;s a roadmap.</p>
         </div>
       </div>
     </section>
@@ -464,8 +509,8 @@ function OnChainProof() {
           </span>
           <h2 className="mt-4 text-2xl sm:text-3xl">Not a promise. A contract.</h2>
           <p className="mt-3 text-muted">
-            The no-loss guarantee is enforced in Rust on-chain, not by a backend team. Every
-            deposit, draw, and withdrawal is a Soroban transaction anyone can verify.
+            The no-loss guarantee lives in Rust, on-chain — no backend team standing behind the
+            curtain. Every deposit, draw, and withdrawal is a Soroban transaction anyone can verify.
           </p>
           <a
             href={CONTRACT_EXPLORER_URL}
