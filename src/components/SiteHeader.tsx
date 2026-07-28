@@ -12,6 +12,13 @@ const NAV = [
   { href: '/stats', label: 'Stats' },
 ];
 
+const LANDING_ANCHORS = [
+  { href: '#intro', label: 'Intro' },
+  { href: '#ecosystem', label: 'Ecosystem' },
+  { href: '#roadmap', label: 'Roadmap' },
+  { href: '#how-it-works', label: 'How it works' },
+];
+
 export function SiteHeader() {
   const pathname = usePathname();
 
@@ -22,6 +29,17 @@ export function SiteHeader() {
           <Link href="/landing" className="shrink-0">
             <Wordmark />
           </Link>
+          <nav className="hidden items-center gap-1 sm:flex">
+            {LANDING_ANCHORS.map((item) => (
+              <a
+                key={item.href}
+                href={item.href}
+                className="rounded-lg px-3 py-2 text-sm font-medium text-muted transition-colors hover:text-ink-text"
+              >
+                {item.label}
+              </a>
+            ))}
+          </nav>
           <Link href="/" className="btn btn-gold px-4 py-2 text-sm">
             Launch app
           </Link>

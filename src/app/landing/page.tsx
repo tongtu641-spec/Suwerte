@@ -4,8 +4,14 @@ import { motion, useReducedMotion } from 'framer-motion';
 import {
   ArrowRight,
   ArrowUpRight,
+  CheckCircle2,
+  Code2,
   Coins,
+  Compass,
   Dice5,
+  Gift,
+  Globe,
+  KeyRound,
   Lock,
   ShieldCheck,
   Sparkles,
@@ -42,6 +48,9 @@ export default function LandingPage() {
       <Hero />
       <StatsStrip stats={stats} />
       <HowItWorks />
+      <Ecosystem />
+      <TechnicalWalkthrough />
+      <Roadmap />
       <OnChainProof />
       <FinalCta />
     </div>
@@ -50,7 +59,10 @@ export default function LandingPage() {
 
 function Hero() {
   return (
-    <section className="mx-auto max-w-6xl px-4 pt-14 pb-10 sm:px-6 sm:pt-20">
+    <section
+      id="intro"
+      className="mx-auto max-w-6xl scroll-mt-24 px-4 pt-14 pb-10 sm:px-6 sm:pt-20"
+    >
       <div className="grid items-center gap-10 lg:grid-cols-[1.05fr_0.95fr]">
         <div>
           <span className="chip text-gold">
@@ -228,6 +240,215 @@ function HowItWorks() {
             <p className="mt-1.5 text-sm text-muted">{s.body}</p>
           </div>
         ))}
+      </div>
+    </section>
+  );
+}
+
+function Ecosystem() {
+  const actors = [
+    {
+      icon: Wallet,
+      title: 'Depositors',
+      body: 'Savers who deposit XLM, hold principal weighted by ticket count, and can withdraw in full at any time.',
+    },
+    {
+      icon: Gift,
+      title: 'Prize sponsor',
+      body: "Whoever calls fund_prize tops up the pot the next draw pays out. Sponsor funds never touch a saver's principal.",
+    },
+    {
+      icon: ShieldCheck,
+      title: 'suwerte-pool contract',
+      body: 'The Soroban contract itself — the only custodian. It escrows every principal, holds the prize pool, and runs the draw.',
+      highlight: true,
+    },
+    {
+      icon: Globe,
+      title: 'Stellar network',
+      body: `The settlement layer. Every deposit, withdrawal, prize top-up, and draw finalizes as a Stellar ${NETWORK_LABEL} transaction.`,
+    },
+    {
+      icon: KeyRound,
+      title: 'Freighter & Stellar wallets',
+      body: 'Sign every saver-side call. The app never holds a private key and never custodies a signature.',
+    },
+    {
+      icon: Coins,
+      title: 'Native XLM',
+      body: 'The settlement asset, moved through its Stellar Asset Contract — no trustline required.',
+    },
+  ];
+
+  return (
+    <section id="ecosystem" className="mx-auto max-w-6xl scroll-mt-24 px-4 py-12 sm:px-6">
+      <span className="chip text-mint">
+        <Globe className="h-3.5 w-3.5" /> Ecosystem
+      </span>
+      <h2 className="mt-4 text-2xl sm:text-3xl">Who actually moves the pool</h2>
+      <p className="mt-2 max-w-2xl text-muted">
+        Suwerte is one contract, not a token stack. These are the real actors that make a round run
+        — no invented partners, no integrations that don&apos;t exist.
+      </p>
+      <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+        {actors.map((a) => (
+          <div key={a.title} className={`card p-5 ${a.highlight ? 'border-gold/40' : ''}`}>
+            <a.icon className={`h-6 w-6 ${a.highlight ? 'text-gold' : 'text-mint'}`} />
+            <h3 className="mt-4 text-lg">{a.title}</h3>
+            <p className="mt-1.5 text-sm text-muted">{a.body}</p>
+            {a.highlight && (
+              <a
+                href={CONTRACT_EXPLORER_URL}
+                target="_blank"
+                rel="noreferrer"
+                className="mt-3 inline-flex items-center gap-1.5 text-sm text-mint hover:underline"
+              >
+                View on-chain <ArrowUpRight className="h-3.5 w-3.5" />
+              </a>
+            )}
+          </div>
+        ))}
+      </div>
+    </section>
+  );
+}
+
+function TechnicalWalkthrough() {
+  const entryPoints = [
+    {
+      fn: 'initialize(admin, token)',
+      body: 'One-time setup. Records the admin and the escrow token — the XLM Stellar Asset Contract.',
+    },
+    {
+      fn: 'deposit(saver, amount)',
+      body: "Saver-authorized. Pulls amount into the contract and credits the saver's principal.",
+    },
+    {
+      fn: 'withdraw(saver, amount)',
+      body: 'Saver-authorized. Returns up to the full principal to the saver — any time, never gated by a draw.',
+    },
+    {
+      fn: 'fund_prize(funder, amount)',
+      body: 'Funder-authorized. Adds to a prize balance kept separate from every principal.',
+    },
+    {
+      fn: 'draw()',
+      body: 'Admin-authorized. Picks one winner weighted by principal and pays the whole prize pool to them.',
+    },
+  ];
+
+  return (
+    <section id="how-it-works" className="mx-auto max-w-6xl scroll-mt-24 px-4 py-12 sm:px-6">
+      <span className="chip text-gold">
+        <Code2 className="h-3.5 w-3.5" /> How it works
+      </span>
+      <h2 className="mt-4 text-2xl sm:text-3xl">The mechanics, precisely</h2>
+      <p className="mt-2 max-w-2xl text-muted">
+        suwerte-pool is a Rust contract on soroban-sdk with five entry points. No backend custody —
+        this is the condensed technical read; the full source is linked below.
+      </p>
+      <div className="mt-8 grid gap-6 md:grid-cols-2">
+        <div className="card p-6">
+          <h3 className="text-lg">Entry points</h3>
+          <ul className="mt-4 space-y-4">
+            {entryPoints.map((e) => (
+              <li key={e.fn}>
+                <code className="font-mono text-sm text-gold">{e.fn}</code>
+                <p className="mt-1 text-sm text-muted">{e.body}</p>
+              </li>
+            ))}
+          </ul>
+        </div>
+        <div className="space-y-6">
+          <div className="card p-6">
+            <h3 className="text-lg">Custody</h3>
+            <p className="mt-2 text-sm text-muted">
+              A deposit sits in the contract&apos;s own balance from the moment it lands. withdraw
+              always returns exactly the principal a saver put in, on demand. fund_prize adds to a
+              separate prize balance that draw never mixes with principal — the two balances are
+              tracked independently in contract storage.
+            </p>
+          </div>
+          <div className="card p-6">
+            <h3 className="text-lg">How the draw is fair</h3>
+            <p className="mt-2 text-sm text-muted">
+              draw() pulls a uniformly random value in [0, total principal) from Soroban&apos;s
+              on-chain PRNG, then walks the list of savers accumulating each one&apos;s principal
+              until the random value falls inside a saver&apos;s range — one ticket per unit of
+              principal deposited. The whole computation runs inside the transaction, so anyone can
+              re-derive the winner from the chain.
+            </p>
+          </div>
+        </div>
+      </div>
+      <a
+        href={CONTRACT_EXPLORER_URL}
+        target="_blank"
+        rel="noreferrer"
+        className="mt-6 inline-flex items-center gap-1.5 text-sm text-mint hover:underline"
+      >
+        View the suwerte-pool contract source &amp; history <ArrowUpRight className="h-3.5 w-3.5" />
+      </a>
+    </section>
+  );
+}
+
+function Roadmap() {
+  const liveNow = [
+    'Deposit, withdraw, and a principal-weighted draw running on a live Soroban contract, on mainnet and testnet',
+    "No-loss withdrawal enforced in the contract itself — a draw can never touch a saver's principal",
+    'Freighter wallet connect through a real SEP-10 challenge, no password, no custody',
+    'Native XLM settlement with no trustline required',
+    'An opt-in USDC path alongside XLM',
+    'Public stats sourced only from real wallets — no seed data',
+  ];
+  const whatsNext = [
+    'More prize sponsors, not just a single treasury key',
+    'Wallet support beyond Freighter',
+    'An independent audit of the pool contract',
+    'Multisig or key rotation for the admin role',
+    'Automated round closing instead of an admin-triggered draw',
+    'On-chain event indexing for deeper history',
+  ];
+
+  return (
+    <section id="roadmap" className="mx-auto max-w-6xl scroll-mt-24 px-4 py-12 sm:px-6">
+      <span className="chip text-mint">
+        <Compass className="h-3.5 w-3.5" /> Roadmap
+      </span>
+      <h2 className="mt-4 text-2xl sm:text-3xl">Direction, not a promise</h2>
+      <p className="mt-2 max-w-2xl text-muted">
+        What&apos;s live today, and where the project is headed — in plain terms, no dates, no
+        version numbers, no commitments.
+      </p>
+      <div className="mt-8 grid gap-6 md:grid-cols-2">
+        <div className="card p-6">
+          <h3 className="flex items-center gap-2 text-lg">
+            <CheckCircle2 className="h-5 w-5 text-mint" /> Live now
+          </h3>
+          <ul className="mt-4 space-y-3">
+            {liveNow.map((item) => (
+              <li key={item} className="flex gap-2 text-sm text-muted">
+                <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-mint" />
+                {item}
+              </li>
+            ))}
+          </ul>
+        </div>
+        <div className="card p-6">
+          <h3 className="flex items-center gap-2 text-lg">
+            <Compass className="h-5 w-5 text-gold" /> What&apos;s next
+          </h3>
+          <ul className="mt-4 space-y-3">
+            {whatsNext.map((item) => (
+              <li key={item} className="flex gap-2 text-sm text-muted">
+                <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-gold" />
+                {item}
+              </li>
+            ))}
+          </ul>
+          <p className="mt-4 text-xs text-muted">Directional intent, not a commitment.</p>
+        </div>
       </div>
     </section>
   );
