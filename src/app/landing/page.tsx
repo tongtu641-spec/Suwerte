@@ -504,7 +504,7 @@ function TechnicalWalkthrough() {
 
 function Roadmap() {
   const liveNow = [
-    'Deposit, withdraw, and a principal-weighted draw running on a live Soroban contract, on mainnet and testnet',
+    'Deposit, withdraw, and a principal-weighted draw running on a live Soroban contract on Stellar mainnet',
     "No-loss withdrawal enforced in the contract itself — a draw can never touch a saver's principal",
     'Freighter wallet connect through a real SEP-10 challenge, no password, no custody',
     'Native XLM settlement with no trustline required',
