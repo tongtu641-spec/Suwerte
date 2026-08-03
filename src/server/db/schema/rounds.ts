@@ -6,7 +6,7 @@ export type RoundStatus = (typeof ROUND_STATUSES)[number];
 export const roundStatusEnum = pgEnum('round_status', ROUND_STATUSES);
 
 export const rounds = pgTable(
-  'rounds',
+  'suwerte_rounds',
   {
     id: uuid('id').defaultRandom().primaryKey(),
     roundNumber: integer('round_number').notNull(),

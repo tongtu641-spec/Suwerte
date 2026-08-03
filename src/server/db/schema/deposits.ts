@@ -11,7 +11,7 @@ export const depositAssetEnum = pgEnum('deposit_asset', DEPOSIT_ASSETS);
 
 // Each deposit is backed by a REAL on-chain payment (txHash) verified on Horizon.
 export const deposits = pgTable(
-  'deposits',
+  'suwerte_deposits',
   {
     id: uuid('id').defaultRandom().primaryKey(),
     roundId: uuid('round_id')
