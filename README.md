@@ -38,7 +38,7 @@ the suspense.
 
 Submit your GitHub repository link below before the monthly deadline:
 
-**https://github.com/your-org/Suwerte**
+**https://github.com/tongtu641-spec/Suwerte**
 
 <details>
 <summary>Current evidence totals</summary>
