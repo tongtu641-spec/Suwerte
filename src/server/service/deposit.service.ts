@@ -1,6 +1,6 @@
-import { and, desc, eq } from 'drizzle-orm';
+import { and, desc, eq, lt, or, sql } from 'drizzle-orm';
 import { db } from '@/server/db/client';
-import { deposits, rounds, type Deposit, type DepositAsset } from '@/server/db/schema';
+import { deposits, rounds, type Deposit, type DepositAsset, type DepositStatus } from '@/server/db/schema';
 import { AppError } from '@/server/lib/http';
 import { ticketsForStroops } from '@/lib/format';
 import {
@@ -18,14 +18,73 @@ import { getRoundById } from './round.service';
 export type { Deposit };
 export type DepositWithRound = Deposit & { roundNumber: number; roundStatus: string };
 
-export async function getDepositsByUser(publicKey: string): Promise<DepositWithRound[]> {
+export interface DepositPage {
+  items: DepositWithRound[];
+  nextCursor: string | null;
+}
+
+export interface DepositCursor {
+  createdAt: string;
+  id: string;
+}
+
+const DEFAULT_DEPOSITS_PAGE_SIZE = 20;
+
+export function encodeDepositCursor(row: { createdAt: Date; id: string }): string {
+  return Buffer.from(JSON.stringify({ createdAt: row.createdAt.toISOString(), id: row.id })).toString(
+    'base64url',
+  );
+}
+
+export function decodeDepositCursor(cursor: string): DepositCursor {
+  try {
+    const parsed = JSON.parse(Buffer.from(cursor, 'base64url').toString('utf8'));
+    if (typeof parsed.createdAt !== 'string' || typeof parsed.id !== 'string') {
+      throw new Error('malformed cursor');
+    }
+    return parsed;
+  } catch {
+    throw new AppError('INVALID_INPUT', 'Invalid pagination cursor', 400);
+  }
+}
+
+function cursorCondition(cursor: DepositCursor) {
+  const cursorCreatedAt = new Date(cursor.createdAt);
+  return or(
+    lt(deposits.createdAt, cursorCreatedAt),
+    and(eq(deposits.createdAt, cursorCreatedAt), lt(deposits.id, cursor.id)),
+  );
+}
+
+export async function getDepositsByUser(
+  publicKey: string,
+  options: { status?: DepositStatus; cursor?: string; limit?: number } = {},
+): Promise<DepositPage> {
+  const pageSize = options.limit ?? DEFAULT_DEPOSITS_PAGE_SIZE;
+  const cursor = options.cursor ? decodeDepositCursor(options.cursor) : null;
+
   const rows = await db
     .select({ deposit: deposits, roundNumber: rounds.roundNumber, roundStatus: rounds.status })
     .from(deposits)
     .innerJoin(rounds, eq(deposits.roundId, rounds.id))
-    .where(eq(deposits.publicKey, publicKey))
-    .orderBy(desc(deposits.createdAt));
-  return rows.map((r) => ({ ...r.deposit, roundNumber: r.roundNumber, roundStatus: r.roundStatus }));
+    .where(
+      and(
+        eq(deposits.publicKey, publicKey),
+        options.status ? eq(deposits.status, options.status) : undefined,
+        cursor ? cursorCondition(cursor) : undefined,
+      ),
+    )
+    .orderBy(desc(deposits.createdAt), desc(deposits.id))
+    .limit(pageSize + 1);
+
+  const hasMore = rows.length > pageSize;
+  const page = hasMore ? rows.slice(0, pageSize) : rows;
+  const nextCursor = hasMore ? encodeDepositCursor(page[page.length - 1].deposit) : null;
+
+  return {
+    items: page.map((r) => ({ ...r.deposit, roundNumber: r.roundNumber, roundStatus: r.roundStatus })),
+    nextCursor,
+  };
 }
 
 export async function getDepositsByRound(roundId: string): Promise<Deposit[]> {
@@ -111,7 +170,10 @@ async function loadWithdrawable(depositId: string, publicKey: string): Promise<D
   if (dep.publicKey !== publicKey) throw new AppError('FORBIDDEN', 'Not your deposit', 403);
   if (dep.status !== 'confirmed') throw new AppError('CONFLICT', 'Deposit already withdrawn', 409);
   const round = await getRoundById(dep.roundId);
-  if (round && round.status !== 'open') {
+  if (!round) {
+    throw new AppError('NOT_FOUND', 'Round for this deposit no longer exists', 404);
+  }
+  if (round.status !== 'open') {
     throw new AppError('CONFLICT', 'Round is drawing — withdrawals reopen next round', 409);
   }
   return dep;
@@ -172,8 +234,13 @@ export async function getUserPosition(
   roundId: string,
   publicKey: string,
 ): Promise<{ tickets: number; principalStroops: string; usdcStroops: string; count: number }> {
-  const rows = await db
-    .select()
+  const [row] = await db
+    .select({
+      tickets: sql<number>`coalesce(sum(${deposits.tickets}), 0)::int`,
+      count: sql<number>`count(*)::int`,
+      xlm: sql<string>`coalesce(sum(case when ${deposits.asset} = 'XLM' then ${deposits.amountStroops}::numeric else 0 end), 0)::text`,
+      usdc: sql<string>`coalesce(sum(case when ${deposits.asset} = 'USDC' then ${deposits.amountStroops}::numeric else 0 end), 0)::text`,
+    })
     .from(deposits)
     .where(
       and(
@@ -182,18 +249,10 @@ export async function getUserPosition(
         eq(deposits.status, 'confirmed'),
       ),
     );
-  let tickets = 0;
-  let principal = 0n;
-  let usdc = 0n;
-  for (const r of rows) {
-    tickets += r.tickets;
-    if (r.asset === 'XLM') principal += BigInt(r.amountStroops);
-    else usdc += BigInt(r.amountStroops);
-  }
   return {
-    tickets,
-    principalStroops: principal.toString(),
-    usdcStroops: usdc.toString(),
-    count: rows.length,
+    tickets: Number(row?.tickets ?? 0),
+    principalStroops: String(row?.xlm ?? '0').split('.')[0],
+    usdcStroops: String(row?.usdc ?? '0').split('.')[0],
+    count: Number(row?.count ?? 0),
   };
 }
