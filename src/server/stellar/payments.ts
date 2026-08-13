@@ -74,6 +74,9 @@ export async function verifyDepositPayment(input: {
   const whole = (o.amount ?? '0').split('.')[0];
   const frac = ((o.amount ?? '0').split('.')[1] ?? '').padEnd(7, '0').slice(0, 7);
   const amountStroops = (BigInt(whole) * 10_000_000n + BigInt(frac || '0')).toString();
+  if (BigInt(amountStroops) <= 0n) {
+    throw new AppError('INVALID_INPUT', 'Deposit amount must be greater than zero', 400);
+  }
 
   return { amountStroops, from: o.from ?? input.from, createdAt: o.created_at ?? tx.created_at };
 }
