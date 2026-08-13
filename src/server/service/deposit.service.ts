@@ -224,9 +224,10 @@ export async function withdrawDeposit(input: {
   const [updated] = await db
     .update(deposits)
     .set({ status: 'withdrawn', withdrawTxHash: txHash, withdrawnAt: new Date() })
-    .where(eq(deposits.id, dep.id))
+    .from(rounds)
+    .where(and(eq(deposits.id, dep.id), eq(deposits.roundId, rounds.id), eq(rounds.status, 'open')))
     .returning();
-  if (!updated) throw new AppError('INTERNAL', 'Failed to update deposit');
+  if (!updated) throw new AppError('CONFLICT', 'Round is no longer open for withdrawals', 409);
   return updated;
 }
 
