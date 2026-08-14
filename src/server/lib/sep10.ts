@@ -7,7 +7,7 @@ import {
   TransactionBuilder,
   Transaction,
 } from '@stellar/stellar-sdk';
-import { and, eq, gt, isNull } from 'drizzle-orm';
+import { and, eq, gt, isNull, lt } from 'drizzle-orm';
 import { env } from '@/server/config/env';
 import { db } from '@/server/db/client';
 import { authNonces } from '@/server/db/schema';
@@ -16,6 +16,14 @@ import { networkPassphrase } from '@/server/stellar';
 
 const CHALLENGE_TTL_MS = 5 * 60 * 1000;
 const DATA_NAME = `${env.HOME_DOMAIN} auth`;
+
+export async function purgeExpiredNonces(now: Date = new Date()): Promise<number> {
+  const deleted = await db
+    .delete(authNonces)
+    .where(lt(authNonces.expiresAt, now))
+    .returning({ nonce: authNonces.nonce });
+  return deleted.length;
+}
 
 // Build a SEP-10-style challenge: a tx sourced by the server account (sequence 0)
 // carrying a single manageData op sourced by the CLIENT account. The wallet signs
@@ -26,6 +34,10 @@ export async function buildChallenge(clientPublicKey: string): Promise<{ transac
   } catch {
     throw new AppError('INVALID_PUBLIC_KEY', 'INVALID_PUBLIC_KEY', 400);
   }
+
+  // Lazy cleanup: every issued challenge leaves a row in suwerte_auth_nonces;
+  // drop expired ones opportunistically so the table does not grow without bound.
+  await purgeExpiredNonces().catch(() => undefined);
 
   const server = Keypair.fromSecret(env.TREASURY_SECRET_KEY);
   // 32 random bytes -> 44 base64 chars, safely within the 64-byte manageData limit.
