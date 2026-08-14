@@ -146,11 +146,24 @@ export async function buildTrustlineXdr(account: string): Promise<string> {
   return tx.toXDR();
 }
 
-// Submit a signed CLASSIC transaction through Horizon.
+// Submit a signed CLASSIC transaction through Horizon and wait for it to be
+// queryable; without the poll the next verifyDepositPayment often races the
+// indexer and the user sees a confusing 404 instead of the recorded deposit.
 export async function submitSignedXdr(signedXdr: string): Promise<string> {
   const server = horizon();
   const tx = TransactionBuilder.fromXDR(signedXdr, networkPassphrase());
   const res = await server.submitTransaction(tx);
+  if ((res as { hash?: string }).hash) {
+    for (let attempt = 0; attempt < 30; attempt += 1) {
+      const got = await server
+        .transactions()
+        .transaction((res as { hash: string }).hash)
+        .call()
+        .catch(() => null);
+      if (got) return (res as { hash: string }).hash;
+      await new Promise((r) => setTimeout(r, 1000));
+    }
+  }
   return res.hash;
 }
 
