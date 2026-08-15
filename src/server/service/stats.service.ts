@@ -39,12 +39,16 @@ export async function getStats(): Promise<Stats> {
     .from(deposits)
     .where(notExcluded(deposits.publicKey));
 
+  const realWinner = excluded.length
+    ? sql`${rounds.winnerPublicKey} not in (${sql.join(excluded.map((k) => sql`${k}`), sql`, `)})`
+    : sql`true`;
+
   const [rnd] = await db
     .select({
       total: sql<number>`count(*)`,
       completed: sql<number>`count(*) filter (where ${rounds.status} = 'completed')`,
-      prizes: sql<string>`coalesce(sum(${rounds.prizeStroops}::numeric) filter (where ${rounds.status} = 'completed'), 0)::text`,
-      winners: sql<number>`count(distinct ${rounds.winnerPublicKey}) filter (where ${rounds.winnerPublicKey} is not null)`,
+      prizes: sql<string>`coalesce(sum(${rounds.prizeStroops}::numeric) filter (where ${rounds.status} = 'completed' and ${realWinner}), 0)::text`,
+      winners: sql<number>`count(distinct ${rounds.winnerPublicKey}) filter (where ${rounds.winnerPublicKey} is not null and ${realWinner})`,
     })
     .from(rounds);
 
